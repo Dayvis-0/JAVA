@@ -1,2 +1,0 @@
-ClasesYObjetos.Persona
-ClasesYObjetos.Coche
