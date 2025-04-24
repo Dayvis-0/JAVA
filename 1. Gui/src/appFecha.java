@@ -1,6 +1,15 @@
 public class appFecha extends javax.swing.JFrame {
     //... atributos
     private cFecha aF;
+    
+    private void mostrar(){
+        String rta= "Fecha: ";
+        rta= rta+"\nDí­a: "+aF.sDia();
+        rta= rta+"\nMes: "+aF.sMes();
+        rta= rta+"\nAño: "+aF.sAnio();
+        ta_panel.setText(rta);
+    }
+    
     public appFecha() {
         initComponents();
         //... construir clase
@@ -64,6 +73,11 @@ public class appFecha extends javax.swing.JFrame {
         bu_ejecutar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 bu_ejecutarMouseClicked(evt);
+            }
+        });
+        bu_ejecutar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bu_ejecutarActionPerformed(evt);
             }
         });
 
@@ -157,13 +171,11 @@ public class appFecha extends javax.swing.JFrame {
     private void tf_diaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_diaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tf_diaActionPerformed
-    private void mostrar(){
-        String rta= "Fecha: ";
-        rta= rta+"\nDí­a: "+aF.sDia();
-        rta= rta+"\nMes: "+aF.sMes();
-        rta= rta+"\nAño: "+aF.sAnio();
-        ta_panel.setText(rta);
-    }
+
+    private void bu_ejecutarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bu_ejecutarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bu_ejecutarActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -194,7 +206,10 @@ public class appFecha extends javax.swing.JFrame {
         
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new appFecha().setVisible(true);
+                appFecha fe= new appFecha();
+                
+                fe.setVisible(true);
+                fe.setLocationRelativeTo(null);
             }
         });
     }

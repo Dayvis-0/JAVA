@@ -183,6 +183,7 @@
       </Properties>
       <Events>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="bu_ejecutarMouseClicked"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bu_ejecutarActionPerformed"/>
       </Events>
     </Component>
     <Container class="javax.swing.JScrollPane" name="sp_panel">
