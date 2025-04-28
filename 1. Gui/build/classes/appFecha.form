@@ -46,14 +46,12 @@
                       <Component id="cb_operacion" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="103" alignment="0" groupAlignment="0" attributes="0">
-                      <Component id="bu_ejecutar" alignment="1" min="-2" max="-2" attributes="0"/>
-                      <Component id="bu_eliminar" alignment="1" min="-2" pref="55" max="-2" attributes="0"/>
-                  </Group>
-                  <Component id="bu_cancelar" min="-2" pref="77" max="-2" attributes="0"/>
-                  <Component id="bu_agregar" min="-2" pref="69" max="-2" attributes="0"/>
+              <EmptySpace min="39" pref="39" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="bu_ejecutar" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="bu_cancelar" pref="77" max="32767" attributes="0"/>
+                  <Component id="bu_eliminar" alignment="0" max="32767" attributes="0"/>
+                  <Component id="bu_agregar" alignment="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
               <Component id="sp_panel" min="-2" pref="156" max="-2" attributes="0"/>
