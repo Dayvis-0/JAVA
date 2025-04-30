@@ -24,6 +24,16 @@ public class persona extends javax.swing.JFrame {
         ta_mostrar.setText(rta);
     }
     
+    public boolean validarDNI (String pValidarDNI) {
+        int nume = pValidarDNI.length();
+        
+        if (nume > 8 || pValidarDNI.matches(".*\\d.*")) {
+            return false;
+        }
+        
+        return true;
+    }
+    
     public persona() {
         initComponents();
         //... constructor
@@ -46,12 +56,11 @@ public class persona extends javax.swing.JFrame {
         cb_ecivil = new javax.swing.JComboBox<>();
         la_fnacimiento = new javax.swing.JLabel();
         tf_fnacimiento = new javax.swing.JTextField();
-        bu_registrar = new javax.swing.JButton();
         bu_mostrar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        but_agregar = new javax.swing.JButton();
+        bu_modificar = new javax.swing.JButton();
+        bu_limpiar = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         ta_mostrar = new javax.swing.JTextArea();
 
@@ -89,18 +98,6 @@ public class persona extends javax.swing.JFrame {
 
         tf_fnacimiento.setColumns(8);
 
-        bu_registrar.setText("Registrar");
-        bu_registrar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                bu_registrarMouseClicked(evt);
-            }
-        });
-        bu_registrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bu_registrarActionPerformed(evt);
-            }
-        });
-
         bu_mostrar.setText("Mostrar");
         bu_mostrar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -110,11 +107,26 @@ public class persona extends javax.swing.JFrame {
 
         jLabel1.setText("Sexo");
 
-        jButton1.setText("Agregar");
+        but_agregar.setText("Agregar");
+        but_agregar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                but_agregarMouseClicked(evt);
+            }
+        });
 
-        jButton2.setText("Modificar");
+        bu_modificar.setText("Modificar");
+        bu_modificar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bu_modificarMouseClicked(evt);
+            }
+        });
 
-        jButton3.setText("Limpiar");
+        bu_limpiar.setText("Limpiar");
+        bu_limpiar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bu_limpiarMouseClicked(evt);
+            }
+        });
 
         ta_mostrar.setColumns(20);
         ta_mostrar.setRows(5);
@@ -129,7 +141,6 @@ public class persona extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(la_fnacimiento)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(la_ecivil)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -151,28 +162,29 @@ public class persona extends javax.swing.JFrame {
                         .addGap(42, 42, 42))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                        .addComponent(la_dni)
-                                        .addGap(38, 38, 38)
-                                        .addComponent(tf_dni, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                        .addComponent(la_nom)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(la_fnacimiento)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(bu_limpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                            .addComponent(la_dni)
+                                            .addGap(38, 38, 38)
+                                            .addComponent(tf_dni, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                            .addComponent(la_nom)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(tf_nom, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(la_ap)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(tf_nom, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)))
+                                        .addComponent(tf_ap, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)
-                                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(la_ap)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(tf_ap, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(bu_registrar, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE))))
+                                    .addComponent(bu_modificar, javax.swing.GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)
+                                    .addComponent(but_agregar, javax.swing.GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE))))
                         .addGap(18, 18, 18)))
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(15, 15, 15))
@@ -186,22 +198,25 @@ public class persona extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(la_dni)
                             .addComponent(tf_dni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(la_nom)
-                            .addComponent(tf_nom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton2))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(la_ap)
-                            .addComponent(tf_ap, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(bu_registrar))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(but_agregar))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(la_fnacimiento)
-                            .addComponent(jButton3))
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(la_nom)
+                                    .addComponent(tf_nom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(la_ap)
+                                    .addComponent(tf_ap, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(20, 20, 20)
+                                .addComponent(bu_modificar)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(la_fnacimiento)
+                            .addComponent(bu_limpiar))
+                        .addGap(10, 10, 10)
                         .addComponent(tf_fnacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(7, 7, 7)
@@ -217,26 +232,11 @@ public class persona extends javax.swing.JFrame {
                     .addComponent(cb_ecivil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(bu_mostrar)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void bu_registrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bu_registrarMouseClicked
-        //... registrar datos
-        p1.mDNI(tf_dni.getText());
-        p1.mApellidos(tf_ap.getText());
-        p1.mNombres(tf_nom.getText());
-        p1.mSexo(rb_masculino.isSelected()?1:0);
-        p1.mEcivil(cb_ecivil.getSelectedIndex());
-        //... hacer uso del metodo subString()
-        String fecha= tf_fnacimiento.getText();
-        int dia= Integer.parseInt(fecha.substring(0, 2));
-        p1.mFnacimiento(dia, 12, 2024);
-        //... limpiar datos
-        limpiarDatos();
-    }//GEN-LAST:event_bu_registrarMouseClicked
 
     private void bu_mostrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bu_mostrarMouseClicked
         // TODO add your handling code here:
@@ -248,9 +248,33 @@ public class persona extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tf_nomActionPerformed
 
-    private void bu_registrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bu_registrarActionPerformed
+    private void bu_limpiarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bu_limpiarMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_bu_registrarActionPerformed
+        limpiarDatos();
+    }//GEN-LAST:event_bu_limpiarMouseClicked
+
+    private void bu_modificarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bu_modificarMouseClicked
+        // TODO add your handling code here:
+        
+        limpiarDatos();
+    }//GEN-LAST:event_bu_modificarMouseClicked
+
+    private void but_agregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_but_agregarMouseClicked
+        // TODO add your handling code here:
+        //... registrar datos
+        
+        p1.mDNI(tf_dni.getText());
+        p1.mApellidos(tf_ap.getText());
+        p1.mNombres(tf_nom.getText());
+        p1.mSexo(rb_masculino.isSelected()?1:0);
+        p1.mEcivil(cb_ecivil.getSelectedIndex());
+        //... hacer uso del metodo subString()
+        String fecha= tf_fnacimiento.getText();
+        int dia= Integer.parseInt(fecha.substring(0, 2));
+        p1.mFnacimiento(dia, 12, 2024);
+        
+        limpiarDatos();
+    }//GEN-LAST:event_but_agregarMouseClicked
     private void limpiarDatos(){
         tf_dni.setText(""); tf_ap.setText(""); tf_nom.setText("");
         rb_masculino.setSelected(true);
@@ -297,12 +321,11 @@ public class persona extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup bg_sexo;
+    private javax.swing.JButton bu_limpiar;
+    private javax.swing.JButton bu_modificar;
     private javax.swing.JButton bu_mostrar;
-    private javax.swing.JButton bu_registrar;
+    private javax.swing.JButton but_agregar;
     private javax.swing.JComboBox<String> cb_ecivil;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel la_ap;
