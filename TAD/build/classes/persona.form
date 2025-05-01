@@ -88,7 +88,7 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="bu_modificar" pref="86" max="32767" attributes="0"/>
-                                  <Component id="but_agregar" pref="86" max="32767" attributes="0"/>
+                                  <Component id="bu_agregar" pref="86" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -109,7 +109,7 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="la_dni" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="tf_dni" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="but_agregar" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="bu_agregar" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
@@ -202,6 +202,9 @@
         <Property name="selected" type="boolean" value="true"/>
         <Property name="text" type="java.lang.String" value="Masculino"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rb_masculinoActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JRadioButton" name="rb_femenino">
       <Properties>
@@ -227,6 +230,9 @@
           </StringArray>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cb_ecivilActionPerformed"/>
+      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
@@ -254,12 +260,12 @@
         <Property name="text" type="java.lang.String" value="Sexo"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="but_agregar">
+    <Component class="javax.swing.JButton" name="bu_agregar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Agregar"/>
       </Properties>
       <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="but_agregarMouseClicked"/>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="bu_agregarMouseClicked"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="bu_modificar">
@@ -290,6 +296,9 @@
             <Property name="columns" type="int" value="20"/>
             <Property name="rows" type="int" value="5"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="ta_mostrarMouseClicked"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

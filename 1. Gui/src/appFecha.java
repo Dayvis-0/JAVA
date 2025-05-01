@@ -4,10 +4,16 @@ public class appFecha extends javax.swing.JFrame {
     
     private void mostrar(){
         String rta= "Fecha: ";
-        rta= rta+"\nDí­a: "+aF.sDia();
+        rta= rta+"\nDi­a: "+aF.sDia();
         rta= rta+"\nMes: "+aF.sMes();
         rta= rta+"\nAño: "+aF.sAnio();
         ta_panel.setText(rta);
+    }
+    
+    public void limpiarDatos() {
+        tf_dia.setText(""); tf_mes.setText(""); tf_anio.setText("");
+        
+        cb_operacion.setSelectedIndex(0);
     }
     
     public appFecha() {
@@ -59,8 +65,23 @@ public class appFecha extends javax.swing.JFrame {
         cb_operacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mostrar" }));
 
         bu_agregar.setText("Agregar");
+        bu_agregar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bu_agregarMouseClicked(evt);
+            }
+        });
+        bu_agregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bu_agregarActionPerformed(evt);
+            }
+        });
 
         bu_cancelar.setText("Cancelar");
+        bu_cancelar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bu_cancelarMouseClicked(evt);
+            }
+        });
         bu_cancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bu_cancelarActionPerformed(evt);
@@ -68,6 +89,16 @@ public class appFecha extends javax.swing.JFrame {
         });
 
         bu_eliminar.setText("Eliminar");
+        bu_eliminar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bu_eliminarMouseClicked(evt);
+            }
+        });
+        bu_eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bu_eliminarActionPerformed(evt);
+            }
+        });
 
         bu_ejecutar.setText("Ejecutar");
         bu_ejecutar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -108,10 +139,10 @@ public class appFecha extends javax.swing.JFrame {
                         .addComponent(cb_operacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(39, 39, 39)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(bu_ejecutar)
                     .addComponent(bu_cancelar, javax.swing.GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE)
                     .addComponent(bu_eliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(bu_agregar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(bu_agregar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(bu_ejecutar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(36, 36, 36)
                 .addComponent(sp_panel, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(33, Short.MAX_VALUE))
@@ -146,8 +177,8 @@ public class appFecha extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(bu_cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(bu_eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(bu_eliminar)
+                                .addGap(21, 21, 21)
                                 .addComponent(bu_ejecutar)))))
                 .addContainerGap(21, Short.MAX_VALUE))
         );
@@ -174,6 +205,46 @@ public class appFecha extends javax.swing.JFrame {
     private void bu_ejecutarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bu_ejecutarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_bu_ejecutarActionPerformed
+
+    private void bu_agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bu_agregarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bu_agregarActionPerformed
+
+    private void bu_agregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bu_agregarMouseClicked
+        // TODO add your handling code here:
+        int dia, mes, anio;
+        
+        dia = Integer.parseInt(tf_dia.getText());
+        mes = Integer.parseInt(tf_mes.getText());
+        anio = Integer.parseInt(tf_anio.getText());
+        
+        aF.mDia(dia);
+        aF.mMes(mes);
+        aF.mAnio(anio);
+        
+        limpiarDatos();
+    }//GEN-LAST:event_bu_agregarMouseClicked
+
+    private void bu_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bu_eliminarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bu_eliminarActionPerformed
+
+    private void bu_eliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bu_eliminarMouseClicked
+        // TODO add your handling code here:
+        
+        limpiarDatos();
+        ta_panel.setText("");
+        
+        aF.mAnio(0);
+        aF.mMes(0);
+        aF.mDia(0);
+    }//GEN-LAST:event_bu_eliminarMouseClicked
+
+    private void bu_cancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bu_cancelarMouseClicked
+        // TODO add your handling code here:
+        
+        limpiarDatos();
+    }//GEN-LAST:event_bu_cancelarMouseClicked
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

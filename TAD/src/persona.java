@@ -1,3 +1,5 @@
+import javax.swing.*;
+
 public class persona extends javax.swing.JFrame {
     //... atributos
     private cPersona p1;
@@ -25,13 +27,15 @@ public class persona extends javax.swing.JFrame {
     }
     
     public boolean validarDNI (String pValidarDNI) {
-        int nume = pValidarDNI.length();
-        
-        if (nume > 8 || pValidarDNI.matches(".*\\d.*")) {
-            return false;
-        }
-        
-        return true;
+        /*matches(String, ICharSequence) - coincide | Complila la expresion regular dada e intenta hacer coincidir la entrada especifica
+        en ella devuelve true si coinciden, en caso contrario false | \\d{8} Las barras invertidas \ son caracteres de escape 
+        \d es un metacaracter que representa cualquier digito numerico (0-9)
+        {} cantidad exacta de las repeticiones del elemento anterior*/
+        return pValidarDNI.matches("\\d{8}") || pValidarDNI.matches("");
+    }
+    
+    public boolean validarNomApe(String pvalidarNomApe){
+        return pvalidarNomApe.matches("[a-zA-Z]+");
     }
     
     public persona() {
@@ -58,7 +62,7 @@ public class persona extends javax.swing.JFrame {
         tf_fnacimiento = new javax.swing.JTextField();
         bu_mostrar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        but_agregar = new javax.swing.JButton();
+        bu_agregar = new javax.swing.JButton();
         bu_modificar = new javax.swing.JButton();
         bu_limpiar = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -86,6 +90,11 @@ public class persona extends javax.swing.JFrame {
         bg_sexo.add(rb_masculino);
         rb_masculino.setSelected(true);
         rb_masculino.setText("Masculino");
+        rb_masculino.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rb_masculinoActionPerformed(evt);
+            }
+        });
 
         bg_sexo.add(rb_femenino);
         rb_femenino.setText("Femenino");
@@ -93,6 +102,11 @@ public class persona extends javax.swing.JFrame {
         la_ecivil.setText("Seleccione estado civil:");
 
         cb_ecivil.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Soltero (a)", "Casado (a)", "Viudo (a)", "Divorciado (a)" }));
+        cb_ecivil.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cb_ecivilActionPerformed(evt);
+            }
+        });
 
         la_fnacimiento.setText("Fecha nacimiento (dd/mm/aaaa):");
 
@@ -107,10 +121,10 @@ public class persona extends javax.swing.JFrame {
 
         jLabel1.setText("Sexo");
 
-        but_agregar.setText("Agregar");
-        but_agregar.addMouseListener(new java.awt.event.MouseAdapter() {
+        bu_agregar.setText("Agregar");
+        bu_agregar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                but_agregarMouseClicked(evt);
+                bu_agregarMouseClicked(evt);
             }
         });
 
@@ -130,6 +144,11 @@ public class persona extends javax.swing.JFrame {
 
         ta_mostrar.setColumns(20);
         ta_mostrar.setRows(5);
+        ta_mostrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ta_mostrarMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(ta_mostrar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -184,7 +203,7 @@ public class persona extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(bu_modificar, javax.swing.GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)
-                                    .addComponent(but_agregar, javax.swing.GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE))))
+                                    .addComponent(bu_agregar, javax.swing.GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE))))
                         .addGap(18, 18, 18)))
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(15, 15, 15))
@@ -198,7 +217,7 @@ public class persona extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(la_dni)
                             .addComponent(tf_dni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(but_agregar))
+                            .addComponent(bu_agregar))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -259,13 +278,19 @@ public class persona extends javax.swing.JFrame {
         limpiarDatos();
     }//GEN-LAST:event_bu_modificarMouseClicked
 
-    private void but_agregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_but_agregarMouseClicked
+    private void bu_agregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bu_agregarMouseClicked
         // TODO add your handling code here:
         //... registrar datos
         
-        p1.mDNI(tf_dni.getText());
-        p1.mApellidos(tf_ap.getText());
-        p1.mNombres(tf_nom.getText());
+        if (validarDNI(tf_dni.getText()) && validarNomApe(tf_nom.getText()) && validarNomApe(tf_ap.getText())) {
+            p1.mDNI(tf_dni.getText());
+            p1.mApellidos(tf_ap.getText()); 
+            p1.mNombres(tf_nom.getText());
+        }
+        else {
+            JOptionPane.showMessageDialog(null,"Dato o datos invalidos", "Error de entrada", JOptionPane.ERROR_MESSAGE);
+            limpiarDatos();
+        }
         p1.mSexo(rb_masculino.isSelected()?1:0);
         p1.mEcivil(cb_ecivil.getSelectedIndex());
         //... hacer uso del metodo subString()
@@ -274,12 +299,26 @@ public class persona extends javax.swing.JFrame {
         p1.mFnacimiento(dia, 12, 2024);
         
         limpiarDatos();
-    }//GEN-LAST:event_but_agregarMouseClicked
+    }//GEN-LAST:event_bu_agregarMouseClicked
+
+    private void ta_mostrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ta_mostrarMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ta_mostrarMouseClicked
+
+    private void rb_masculinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rb_masculinoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rb_masculinoActionPerformed
+
+    private void cb_ecivilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_ecivilActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cb_ecivilActionPerformed
     private void limpiarDatos(){
         tf_dni.setText(""); tf_ap.setText(""); tf_nom.setText("");
         rb_masculino.setSelected(true);
         cb_ecivil.setSelectedIndex(0);
         tf_fnacimiento.setText("");
+        
+        ta_mostrar.setText("");
     }
     /**
      * @param args the command line arguments
@@ -321,10 +360,10 @@ public class persona extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup bg_sexo;
+    private javax.swing.JButton bu_agregar;
     private javax.swing.JButton bu_limpiar;
     private javax.swing.JButton bu_modificar;
     private javax.swing.JButton bu_mostrar;
-    private javax.swing.JButton but_agregar;
     private javax.swing.JComboBox<String> cb_ecivil;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane2;

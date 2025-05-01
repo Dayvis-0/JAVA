@@ -116,7 +116,7 @@ public class Raiz extends javax.swing.JFrame {
 
     private void bu_raMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bu_raMouseClicked
         // TODO add your handling code here:
-        int num=Integer.parseInt(tf_num.getText());
+        int num = Integer.parseInt(tf_num.getText());
         
         raiz.mNumero(num);
         

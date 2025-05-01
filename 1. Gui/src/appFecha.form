@@ -48,10 +48,10 @@
               </Group>
               <EmptySpace min="39" pref="39" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="bu_ejecutar" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="bu_cancelar" pref="77" max="32767" attributes="0"/>
                   <Component id="bu_eliminar" alignment="0" max="32767" attributes="0"/>
                   <Component id="bu_agregar" alignment="0" max="32767" attributes="0"/>
+                  <Component id="bu_ejecutar" alignment="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
               <Component id="sp_panel" min="-2" pref="156" max="-2" attributes="0"/>
@@ -94,8 +94,8 @@
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="bu_cancelar" min="-2" pref="24" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                              <Component id="bu_eliminar" min="-2" pref="33" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="bu_eliminar" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                               <Component id="bu_ejecutar" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -161,12 +161,17 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Agregar"/>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="bu_agregarMouseClicked"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bu_agregarActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="bu_cancelar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Cancelar"/>
       </Properties>
       <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="bu_cancelarMouseClicked"/>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bu_cancelarActionPerformed"/>
       </Events>
     </Component>
@@ -174,6 +179,10 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Eliminar"/>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="bu_eliminarMouseClicked"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bu_eliminarActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="bu_ejecutar">
       <Properties>
