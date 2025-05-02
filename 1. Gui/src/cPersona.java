@@ -3,7 +3,7 @@ public class cPersona {
     private int aSexo, aECivil;
     private cFecha aFNacimiento;
     
-    protected cPersona () { aDNI = ""; aApe = ""; aNom = ""; aSexo = 0; aEcivil = 0; aFNacimiento = new cFecha();}
+    protected cPersona () { aDNI = ""; aApe = ""; aNom = ""; aSexo = 0; aECivil = 0; aFNacimiento = new cFecha();}
     
     public void mDNI(String pDNI) { aDNI = pDNI; }
     public void mApellidos(String pApe) { aApe = pApe; }
