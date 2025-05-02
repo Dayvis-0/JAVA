@@ -178,6 +178,9 @@
         <Property name="selected" type="boolean" value="true"/>
         <Property name="text" type="java.lang.String" value="Masculino"/>
       </Properties>
+      <Events>
+        <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="rb_masculinoStateChanged"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JRadioButton" name="rb_femenino">
       <Properties>

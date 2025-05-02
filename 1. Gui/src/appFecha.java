@@ -2,6 +2,12 @@ public class appFecha extends javax.swing.JFrame {
     //... atributos
     private cFecha aF;
     
+    public appFecha() {
+        initComponents();
+        //... construir clase
+        aF = new cFecha();
+    }   
+    
     private void mostrar(){
         String rta= "Fecha: ";
         rta= rta+"\nDi­a: "+aF.sDia();
@@ -15,12 +21,7 @@ public class appFecha extends javax.swing.JFrame {
         
         cb_operacion.setSelectedIndex(0);
     }
-    
-    public appFecha() {
-        initComponents();
-        //... construir clase
-        aF = new cFecha();
-    }   
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

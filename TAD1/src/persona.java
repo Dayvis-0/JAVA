@@ -270,6 +270,8 @@ public class persona extends javax.swing.JFrame {
     private void bu_limpiarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bu_limpiarMouseClicked
         // TODO add your handling code here:
         limpiarDatos();
+        
+        ta_mostrar.setText("");
     }//GEN-LAST:event_bu_limpiarMouseClicked
 
     private void bu_modificarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bu_modificarMouseClicked
