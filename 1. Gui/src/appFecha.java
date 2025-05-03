@@ -63,7 +63,7 @@ public class appFecha extends javax.swing.JFrame {
 
         tf_anio.setColumns(5);
 
-        cb_operacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mostrar" }));
+        cb_operacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mostrar", "Validar" }));
 
         bu_agregar.setText("Agregar");
         bu_agregar.addMouseListener(new java.awt.event.MouseAdapter() {
