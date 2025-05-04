@@ -26,4 +26,13 @@ public class cPersona {
     public String toString () {
         return aDNI + " " + aApe + " " + aNom + " " + aSexo + " " + aECivil + " " + aFNacimiento.toString();
     }
+    
+    public boolean validateDNI (String pDNI) {
+        /*matches(String, ICharSequence) - coincide | Complila la expresion regular dada e intenta hacer coincidir la entrada especifica
+        en ella devuelve true si coinciden, en caso contrario false | \\d{8} Las barras invertidas \ son caracteres de escape 
+        \d es un metacaracter que representa cualquier digito numerico (0-9)
+        {} cantidad exacta de las repeticiones del elemento anterior*/
+        
+        return pDNI.matches("\\d{8}");
+    }
 }

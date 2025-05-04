@@ -1,3 +1,5 @@
+import javax.swing.JOptionPane;
+
 public class appPersona extends javax.swing.JFrame {
     
     private cPersona aP1;
@@ -281,7 +283,12 @@ public class appPersona extends javax.swing.JFrame {
     private void bu_agregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bu_agregarMouseClicked
         // TODO add your handling code here:
         
-        aP1.mDNI(tf_DNI.getText());
+        if (aP1.validateDNI(tf_DNI.getText())){
+            aP1.mDNI(tf_DNI.getText());        
+        }
+        else {
+            JOptionPane.showMessageDialog(null, "DNI incorrecto");
+        }
         aP1.mNombres(tf_nombre.getText());
         aP1.mApellidos(tf_apellido.getText());
         
@@ -289,6 +296,7 @@ public class appPersona extends javax.swing.JFrame {
         int dia = Integer.parseInt(fecha.substring(0, 2));
         int mes = Integer.parseInt(fecha.substring(3, 5));
         int anio = Integer.parseInt(fecha.substring(6));
+        
         aP1.mFNacimiento(dia, mes, anio);
         
         aP1.mSexo(rb_masculino.isSelected() ? 1 : 0);

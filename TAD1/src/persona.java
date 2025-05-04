@@ -27,11 +27,18 @@ public class persona extends javax.swing.JFrame {
     }
     
     public boolean validarDNI (String pValidarDNI) {
-        /*matches(String, ICharSequence) - coincide | Complila la expresion regular dada e intenta hacer coincidir la entrada especifica
-        en ella devuelve true si coinciden, en caso contrario false | \\d{8} Las barras invertidas \ son caracteres de escape 
-        \d es un metacaracter que representa cualquier digito numerico (0-9)
-        {} cantidad exacta de las repeticiones del elemento anterior*/
-        return pValidarDNI.matches("\\d{8}") || pValidarDNI.matches("");
+        if (pValidarDNI.length() != 8){
+            return false;
+        }
+        
+        for (int i=0; i<pValidarDNI.length(); i++) {
+            char c = pValidarDNI.charAt(i);
+            if (c < '0' || c > '9') {
+                return false;
+            }
+        }
+        
+        return true;
     }
     
     public boolean validarNomApe(String pvalidarNomApe){

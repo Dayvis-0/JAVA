@@ -1,3 +1,5 @@
+import javax.swing.JOptionPane;
+
 public class appFecha extends javax.swing.JFrame {
     //... atributos
     private cFecha aF;
@@ -14,6 +16,20 @@ public class appFecha extends javax.swing.JFrame {
         rta= rta+"\nMes: "+aF.sMes();
         rta= rta+"\nAño: "+aF.sAnio();
         ta_panel.setText(rta);
+    }
+    
+    public void validar() {
+        int dia = Integer.parseInt(tf_dia.getText());
+        int mes = Integer.parseInt(tf_mes.getText());
+        int anio = Integer.parseInt(tf_anio.getText());
+        
+        if (aF.validaFecha(dia, mes, anio)) {
+            aF.mDia(dia); aF.mMes(mes); aF.mAnio(anio);
+            JOptionPane.showMessageDialog(null, " Fecha correcta");
+        }
+        else {
+            JOptionPane.showMessageDialog(null, " Fecha incorrecta");
+        }
     }
     
     public void limpiarDatos() {
@@ -192,6 +208,7 @@ public class appFecha extends javax.swing.JFrame {
         int opc= cb_operacion.getSelectedIndex();
         switch (opc) {
             case 0: mostrar(); break;
+            case 1: validar(); break;
         }
     }//GEN-LAST:event_bu_ejecutarMouseClicked
 
@@ -219,11 +236,15 @@ public class appFecha extends javax.swing.JFrame {
         mes = Integer.parseInt(tf_mes.getText());
         anio = Integer.parseInt(tf_anio.getText());
         
-        aF.mDia(dia);
-        aF.mMes(mes);
-        aF.mAnio(anio);
-        
-        limpiarDatos();
+        if (aF.validaFecha(dia, mes, anio)) {
+            aF.mDia(dia); aF.mDia(dia); aF.mAnio(anio);
+            limpiarDatos();
+            mostrar();
+            JOptionPane.showMessageDialog(null, "Fecha registrada");
+        }
+        else {
+            JOptionPane.showMessageDialog(null, "Fecha incorrecta");
+        }
     }//GEN-LAST:event_bu_agregarMouseClicked
 
     private void bu_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bu_eliminarActionPerformed
