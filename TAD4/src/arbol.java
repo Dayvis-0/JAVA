@@ -158,7 +158,10 @@ public class arbol extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new arbol().setVisible(true);
+                arbol a1 = new arbol();
+                
+                a1.setVisible(true);
+                a1.setLocationRelativeTo(null);
             }
         });
     }

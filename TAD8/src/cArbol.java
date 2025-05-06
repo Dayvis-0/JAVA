@@ -38,6 +38,7 @@ public class cArbol {
         else{ aux= aPhijo.agregarHermano(pRaiz); }
         return aux;
     }
+
     public boolean agregar(cArbol pArbolPadre, Object pRaiz){
         boolean aux= false;
         if(estaVacio() && pArbolPadre==null){ aRaiz= pRaiz; aux= true; }

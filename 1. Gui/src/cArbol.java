@@ -45,7 +45,6 @@ public class cArbol {
         else {
             rta = aSHermano.agregarHermano(pRaiz);
         }
-        
         return rta; 
     }
     
@@ -58,9 +57,9 @@ public class cArbol {
         }
         else {
             rta = aPHijo.agregarHermano(pRaiz);
-            
-            return rta;
+            rta = true;
         }
+        return rta;
     }
     public boolean agregar(cArbol pArbolPadre, Object pRaiz) {
         boolean rta = false;
@@ -73,16 +72,24 @@ public class cArbol {
                 rta = pArbolPadre.agregarHijo(pRaiz);
             }
         }
-        
+        return rta;
+    }
+    
+    public String mostrar() {
+        String rta = "";
+        if (!isEmpty()) {
+            rta = aRaiz + "";
+            if (aPHijo != null) {rta = rta + " " + aPHijo.mostrar(); }
+            if (aSHermano != null) {rta = rta + " " + aSHermano.mostrar();}
+        }
         return rta;
     }
     
     public static void main(String[] args) {
-        cArbol a1 = new cArbol();
+        cArbol a1 = new cArbol(1);
         
-        a1.agregar(null, "a");
-        cArbol padrea = a1.subArbol("a");
-        //a1.agregar(padrea, "b");
-        System.out.println("El subarbol: " + padrea);
+        a1.agregar(a1.subArbol(1), "b");
+        
+        System.out.println("El subarbol: " + a1.mostrar());
     }
 }    
