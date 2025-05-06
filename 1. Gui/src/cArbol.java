@@ -61,6 +61,7 @@ public class cArbol {
         }
         return rta;
     }
+    
     public boolean agregar(cArbol pArbolPadre, Object pRaiz) {
         boolean rta = false;
         if (isEmpty() && pArbolPadre == null){
@@ -85,11 +86,36 @@ public class cArbol {
         return rta;
     }
     
+    public boolean eliminar(Object pEliminar) {
+        boolean rta = false;
+        if (!isEmpty()) {
+            if (aPHijo != null) {
+                aPHijo = aPHijo.sSHermano();
+                return true;
+            }
+            else {
+                rta = aPHijo.eliminar(pEliminar);
+            }
+            if (!rta && aSHermano != null) {
+                
+            }
+        }
+        return rta;
+    } 
+    
     public static void main(String[] args) {
-        cArbol a1 = new cArbol(1);
+        cArbol a1 = new cArbol();
         
         a1.agregar(a1.subArbol(1), "b");
+        a1.agregar(a1.subArbol("b"), "c");
         
+        System.out.println("El arbol: " + a1.mostrar());
+        if (a1.eliminar(a1.subArbol("c"))) {
+            System.out.println("Eliminado:");
+        }
+        else {
+            System.out.println("No eliminado");
+        }
         System.out.println("El subarbol: " + a1.mostrar());
     }
 }    

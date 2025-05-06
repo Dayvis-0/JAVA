@@ -101,7 +101,7 @@ public class arbol extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bu_agregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bu_agregarMouseClicked
-        boolean rta= a.agregar(a.subArbol(tf_padre.getText()), tf_hijo.getText());
+        boolean rta = a.agregar(a.subArbol(tf_padre.getText()), tf_hijo.getText());
         limpiar();
         la_respuesta.setText("Insertado: "+rta);
     }//GEN-LAST:event_bu_agregarMouseClicked
