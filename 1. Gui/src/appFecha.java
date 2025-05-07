@@ -249,6 +249,14 @@ public class appFecha extends javax.swing.JFrame {
 
     private void bu_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bu_eliminarActionPerformed
         // TODO add your handling code here:
+        
+        int rta = JOptionPane.showConfirmDialog(null, "Si o No", "Desea eliminar",
+                JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
+        
+        if (rta == 0) {
+            aF.mDia(1); aF.mMes(1); aF.mAnio(1000);
+            ta_panel.setText("Fecha registrada: \n" + aF.toString());
+        }
     }//GEN-LAST:event_bu_eliminarActionPerformed
 
     private void bu_eliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bu_eliminarMouseClicked
