@@ -69,11 +69,6 @@ public class appFecha extends javax.swing.JFrame {
         la_operacion.setText("Operaciones:");
 
         tf_dia.setColumns(5);
-        tf_dia.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tf_diaActionPerformed(evt);
-            }
-        });
 
         tf_mes.setColumns(5);
 
@@ -87,21 +82,11 @@ public class appFecha extends javax.swing.JFrame {
                 bu_agregarMouseClicked(evt);
             }
         });
-        bu_agregar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bu_agregarActionPerformed(evt);
-            }
-        });
 
         bu_cancelar.setText("Cancelar");
         bu_cancelar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 bu_cancelarMouseClicked(evt);
-            }
-        });
-        bu_cancelar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bu_cancelarActionPerformed(evt);
             }
         });
 
@@ -111,21 +96,11 @@ public class appFecha extends javax.swing.JFrame {
                 bu_eliminarMouseClicked(evt);
             }
         });
-        bu_eliminar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bu_eliminarActionPerformed(evt);
-            }
-        });
 
         bu_ejecutar.setText("Ejecutar");
         bu_ejecutar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 bu_ejecutarMouseClicked(evt);
-            }
-        });
-        bu_ejecutar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bu_ejecutarActionPerformed(evt);
             }
         });
 
@@ -212,22 +187,6 @@ public class appFecha extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_bu_ejecutarMouseClicked
 
-    private void bu_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bu_cancelarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_bu_cancelarActionPerformed
-
-    private void tf_diaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_diaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tf_diaActionPerformed
-
-    private void bu_ejecutarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bu_ejecutarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_bu_ejecutarActionPerformed
-
-    private void bu_agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bu_agregarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_bu_agregarActionPerformed
-
     private void bu_agregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bu_agregarMouseClicked
         // TODO add your handling code here:
         int dia, mes, anio;
@@ -246,18 +205,6 @@ public class appFecha extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Fecha incorrecta");
         }
     }//GEN-LAST:event_bu_agregarMouseClicked
-
-    private void bu_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bu_eliminarActionPerformed
-        // TODO add your handling code here:
-        
-        int rta = JOptionPane.showConfirmDialog(null, "Si o No", "Desea eliminar",
-                JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
-        
-        if (rta == 0) {
-            aF.mDia(1); aF.mMes(1); aF.mAnio(1000);
-            ta_panel.setText("Fecha registrada: \n" + aF.toString());
-        }
-    }//GEN-LAST:event_bu_eliminarActionPerformed
 
     private void bu_eliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bu_eliminarMouseClicked
         // TODO add your handling code here:
@@ -301,8 +248,6 @@ public class appFecha extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        
-        
         
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

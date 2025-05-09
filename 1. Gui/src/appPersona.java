@@ -17,7 +17,7 @@ public class appPersona extends javax.swing.JFrame {
         rta = rta + "\nApellidos: " + aP1.sApellidos();
         rta = rta + "\nFecha de nacimiento: " + aP1.sFNacimiento();
         rta = rta + "\nSexo: " + sexo(aP1.sSexo());
-        rta = rta + "\nEstado civil: " + estadoCivil(aP1.sECivil());
+        rta = rta + "\nEstado civil: " + estadoCivil(aP1.sECivil(), aP1.sSexo());
         
         ta_panel.setText(rta);
     }
@@ -35,14 +35,13 @@ public class appPersona extends javax.swing.JFrame {
         return pSexo == 1 ? "Masculino": "Femenino";
     }
     
-    public String estadoCivil(int pECivil) {
+    public String estadoCivil(int pECivil, int pSexo) {
         switch (pECivil) {
-            case 0 -> { return "Soltero";}
-            case 1 -> { return "Casado"; }
-            case 2 -> { return "Viudo"; }
-            case 3 -> { return "Divorciado"; }
+            case 0 -> { return (pSexo == 1? "Soltero" : "Soltera") ;}
+            case 1 -> { return (pSexo == 1? "Casado" : "Casada"); }
+            case 2 -> { return (pSexo == 1? "Viudo" : "Viuda"); }
+            case 3 -> { return (pSexo == 1? "Divorciado" : "Divorciada"); }
         }
-        
         return null;
     }
     
@@ -50,6 +49,7 @@ public class appPersona extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        bg_sexo = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         tf_DNI = new javax.swing.JTextField();
@@ -67,8 +67,11 @@ public class appPersona extends javax.swing.JFrame {
         ta_panel = new javax.swing.JTextArea();
         bu_agregar = new javax.swing.JButton();
         bu_modificar = new javax.swing.JButton();
-        bu_limpiar = new javax.swing.JButton();
-        bu_mostrar = new javax.swing.JButton();
+        bu_eliminar = new javax.swing.JButton();
+        bu_cancelar = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        cb_mostrar = new javax.swing.JComboBox<>();
+        bu_ejecutar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -76,53 +79,21 @@ public class appPersona extends javax.swing.JFrame {
 
         jLabel2.setText("Ingrese nombres: ");
 
-        tf_DNI.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tf_DNIActionPerformed(evt);
-            }
-        });
-
         jLabel3.setText("Ingrese apellidos");
-
-        tf_apellido.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tf_apellidoActionPerformed(evt);
-            }
-        });
 
         jLabel4.setText("Fecha de nacimiento (dd/mm/aaaa):");
 
-        tf_fech_naci.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tf_fech_naciActionPerformed(evt);
-            }
-        });
-
         jLabel5.setText("Sexo:");
 
-        rb_masculino.setSelected(true);
+        bg_sexo.add(rb_masculino);
         rb_masculino.setText("Masculino");
-        rb_masculino.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                rb_masculinoStateChanged(evt);
-            }
-        });
 
+        bg_sexo.add(rb_femenino);
         rb_femenino.setText("Femenino");
-        rb_femenino.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rb_femeninoActionPerformed(evt);
-            }
-        });
 
         jLabel6.setText("Seleccione estado civil:");
 
-        cb_ecivil.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Soltero (a)", "Casado (a)", "Viudo (a)", "Divorciado (a)" }));
-        cb_ecivil.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cb_ecivilActionPerformed(evt);
-            }
-        });
+        cb_ecivil.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Solter@", "Casad@", "Viud@", "Divorciad@" }));
 
         ta_panel.setColumns(20);
         ta_panel.setRows(5);
@@ -134,30 +105,36 @@ public class appPersona extends javax.swing.JFrame {
                 bu_agregarMouseClicked(evt);
             }
         });
-        bu_agregar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bu_agregarActionPerformed(evt);
-            }
-        });
 
         bu_modificar.setText("Modificar");
-        bu_modificar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bu_modificarActionPerformed(evt);
+        bu_modificar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bu_modificarMouseClicked(evt);
             }
         });
 
-        bu_limpiar.setText("Limpiar");
-        bu_limpiar.addMouseListener(new java.awt.event.MouseAdapter() {
+        bu_eliminar.setText("Eliminar");
+        bu_eliminar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                bu_limpiarMouseClicked(evt);
+                bu_eliminarMouseClicked(evt);
             }
         });
 
-        bu_mostrar.setText("Mostrar");
-        bu_mostrar.addMouseListener(new java.awt.event.MouseAdapter() {
+        bu_cancelar.setText("Cancelar");
+        bu_cancelar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                bu_mostrarMouseClicked(evt);
+                bu_cancelarMouseClicked(evt);
+            }
+        });
+
+        jLabel7.setText("Operaciones:");
+
+        cb_mostrar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Texto", "Mostrar" }));
+
+        bu_ejecutar.setText("Ejecutar");
+        bu_ejecutar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bu_ejecutarMouseClicked(evt);
             }
         });
 
@@ -179,11 +156,6 @@ public class appPersona extends javax.swing.JFrame {
                         .addComponent(rb_femenino, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cb_ecivil, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -197,19 +169,32 @@ public class appPersona extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(tf_DNI, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
-                                    .addComponent(tf_nombre))))))
+                                    .addComponent(tf_nombre)))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cb_ecivil, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addGap(18, 18, 18)
+                                .addComponent(cb_mostrar, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(15, 15, 15)
+                                .addComponent(bu_ejecutar, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(bu_agregar, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(12, 12, 12)
                         .addComponent(bu_modificar, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(bu_limpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(bu_eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(12, 12, 12)
-                        .addComponent(bu_mostrar, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(13, Short.MAX_VALUE))
+                        .addComponent(bu_cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -220,8 +205,8 @@ public class appPersona extends javax.swing.JFrame {
                     .addComponent(tf_DNI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(bu_agregar)
                     .addComponent(bu_modificar)
-                    .addComponent(bu_limpiar)
-                    .addComponent(bu_mostrar))
+                    .addComponent(bu_eliminar)
+                    .addComponent(bu_cancelar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -244,41 +229,18 @@ public class appPersona extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
-                            .addComponent(cb_ecivil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(cb_ecivil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel7)
+                            .addComponent(cb_mostrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(bu_ejecutar)))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void tf_DNIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_DNIActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tf_DNIActionPerformed
-
-    private void tf_apellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_apellidoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tf_apellidoActionPerformed
-
-    private void tf_fech_naciActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_fech_naciActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tf_fech_naciActionPerformed
-
-    private void cb_ecivilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_ecivilActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cb_ecivilActionPerformed
-
-    private void bu_modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bu_modificarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_bu_modificarActionPerformed
-
-    private void rb_femeninoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rb_femeninoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_rb_femeninoActionPerformed
-
-    private void bu_agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bu_agregarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_bu_agregarActionPerformed
 
     private void bu_agregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bu_agregarMouseClicked
         // TODO add your handling code here:
@@ -305,21 +267,57 @@ public class appPersona extends javax.swing.JFrame {
         limpiarDatos();
     }//GEN-LAST:event_bu_agregarMouseClicked
 
-    private void bu_mostrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bu_mostrarMouseClicked
+    private void bu_cancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bu_cancelarMouseClicked
         // TODO add your handling code here:
         
         mostrarDatos();
-    }//GEN-LAST:event_bu_mostrarMouseClicked
+    }//GEN-LAST:event_bu_cancelarMouseClicked
 
-    private void bu_limpiarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bu_limpiarMouseClicked
+    private void bu_eliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bu_eliminarMouseClicked
         // TODO add your handling code here:
+        String dni = tf_DNI.getText();
+        if (dni.equals(aP1.sDNI())){
+            aP1.mDNI(""); aP1.mNombres(""); aP1.mApellidos(""); 
+            aP1.mSexo(0); aP1.mECivil(0);
+            aP1.mFNacimiento(1, 1, 1000);
+            JOptionPane.showMessageDialog(null, "Persona eliminada");
+            limpiarDatos();
+        }
+        else {
+            JOptionPane.showMessageDialog(null, "Persona no registrada");
+        }
+    }//GEN-LAST:event_bu_eliminarMouseClicked
+
+    private void bu_modificarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bu_modificarMouseClicked
+        // TODO add your handling code here:
+        // recuperar datos
+        String dni = tf_DNI.getText(), name = tf_nombre.getText(), ape = tf_apellido.getText();
+        int sexo = (rb_masculino.isSelected()? 1: 0), eCivil = cb_ecivil.getSelectedIndex();
+        String fn = tf_fech_naci.getText();
+        int dia = Integer.parseInt(fn.substring(0, 2)), mes = Integer.parseInt(fn.substring(3,5)), 
+                anio = Integer.parseInt(fn.substring(6));
+        // Validar datos
+        if (aP1.mFNacimiento(dia, mes, anio) && aP1.validarPersona(dni, ape, name)) {
+            if (dni.equals(aP1.sDNI())) {
+                aP1.mDNI(dni); aP1.mNombres(name); aP1.mApellidos(ape);
+                aP1.mECivil(eCivil); aP1.mSexo(sexo);
+                JOptionPane.showMessageDialog(null, "Persona modificada");
+                limpiarDatos();
+            }
+            else { JOptionPane.showMessageDialog(null, "Persona no registrada"); }
+        }
+        else { JOptionPane.showMessageDialog(null, "Datos incompletos"); }
         
-        limpiarDatos();
-    }//GEN-LAST:event_bu_limpiarMouseClicked
+    }//GEN-LAST:event_bu_modificarMouseClicked
 
-    private void rb_masculinoStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_rb_masculinoStateChanged
+    private void bu_ejecutarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bu_ejecutarMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_rb_masculinoStateChanged
+        int opc = cb_mostrar.getSelectedIndex();
+        switch (opc) {
+            case 0: ta_panel.setText("Texto: " + aP1.toString()); break;
+            case 1: mostrarDatos(); break;
+        }
+    }//GEN-LAST:event_bu_ejecutarMouseClicked
 
     /**
      * @param args the command line arguments
@@ -360,17 +358,21 @@ public class appPersona extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup bg_sexo;
     private javax.swing.JButton bu_agregar;
-    private javax.swing.JButton bu_limpiar;
+    private javax.swing.JButton bu_cancelar;
+    private javax.swing.JButton bu_ejecutar;
+    private javax.swing.JButton bu_eliminar;
     private javax.swing.JButton bu_modificar;
-    private javax.swing.JButton bu_mostrar;
     private javax.swing.JComboBox<String> cb_ecivil;
+    private javax.swing.JComboBox<String> cb_mostrar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JRadioButton rb_femenino;
     private javax.swing.JRadioButton rb_masculino;

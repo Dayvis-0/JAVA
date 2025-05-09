@@ -76,12 +76,22 @@ public class cArbol {
         return rta;
     }
     
-    public String mostrar() {
+    public String recorrerArbol() {
         String rta = "";
         if (!isEmpty()) {
-            rta = aRaiz + "";
-            if (aPHijo != null) {rta = rta + " " + aPHijo.mostrar(); }
-            if (aSHermano != null) {rta = rta + " " + aSHermano.mostrar();}
+            rta = aRaiz + " ";
+            if (aPHijo != null) { rta = rta + " " + aPHijo.recorrerArbol(); }
+            if (aSHermano != null) { rta = rta + " " + aSHermano.recorrerArbol(); }
+        }
+        return rta;
+    }
+    
+    public int contarNodos() {
+        int rta = 0;
+        if (!isEmpty()) {
+            rta = 1;
+            if (aPHijo != null) { rta = rta + aPHijo.contarNodos(); }
+            if (aSHermano != null) { rta = rta + aSHermano.contarNodos(); }
         }
         return rta;
     }

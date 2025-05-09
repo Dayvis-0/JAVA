@@ -131,9 +131,6 @@
       <Properties>
         <Property name="columns" type="int" value="5"/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tf_diaActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="tf_mes">
       <Properties>
@@ -164,7 +161,6 @@
       </Properties>
       <Events>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="bu_agregarMouseClicked"/>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bu_agregarActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="bu_cancelar">
@@ -173,7 +169,6 @@
       </Properties>
       <Events>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="bu_cancelarMouseClicked"/>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bu_cancelarActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="bu_eliminar">
@@ -182,7 +177,6 @@
       </Properties>
       <Events>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="bu_eliminarMouseClicked"/>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bu_eliminarActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="bu_ejecutar">
@@ -191,7 +185,6 @@
       </Properties>
       <Events>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="bu_ejecutarMouseClicked"/>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bu_ejecutarActionPerformed"/>
       </Events>
     </Component>
     <Container class="javax.swing.JScrollPane" name="sp_panel">

@@ -10,10 +10,15 @@ public class cPersona {
     public void mNombres(String pNom) { aNom = pNom; } 
     public void mSexo(int pSexo) { aSexo = pSexo; } 
     public void mECivil(int pECivil) { aECivil = pECivil; } 
-    public void mFNacimiento(int pDia, int pMes, int pAnio) { 
-        aFNacimiento.mDia(pDia);
-        aFNacimiento.mMes(pMes);
-        aFNacimiento.mAnio(pAnio);
+    public boolean mFNacimiento(int pDia, int pMes, int pAnio) { 
+        boolean rta = false;
+        if (aFNacimiento.validaFecha(pDia, pMes, pAnio)) {
+            aFNacimiento.mDia(pDia);
+            aFNacimiento.mMes(pMes);
+            aFNacimiento.mAnio(pAnio); 
+            return true;
+        }
+        return rta;
     } 
     
     public String sDNI () { return aDNI; }
@@ -25,6 +30,14 @@ public class cPersona {
     
     public String toString () {
         return aDNI + " " + aApe + " " + aNom + " " + aSexo + " " + aECivil + " " + aFNacimiento.toString();
+    }
+    
+    public boolean validarPersona(String pDNI, String pApellido, String pNombre) {
+        boolean rta = true;
+        if (pDNI.equals("") || pApellido.equals("") || pNombre.equals("")) {
+            rta = false;
+        }
+        return rta;
     }
     
     public boolean validateDNI (String pDNI) {
