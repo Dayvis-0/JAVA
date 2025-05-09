@@ -1,3 +1,5 @@
+import javax.swing.JOptionPane;
+
 public class appArbol extends javax.swing.JFrame {
     private cArbol a1;
     
@@ -13,6 +15,8 @@ public class appArbol extends javax.swing.JFrame {
             return 1 + contarNodos(pA1.sSHermano()) + contarNodos(pA1.sSHijo());
         }
     }
+    
+    private void limpiar() { tf_padre.setText(""); tf_hijo.setText("");}
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -82,12 +86,11 @@ public class appArbol extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(bu_agregar, javax.swing.GroupLayout.DEFAULT_SIZE, 74, Short.MAX_VALUE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(bu_eliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(bu_ejecutar, javax.swing.GroupLayout.DEFAULT_SIZE, 74, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(17, 17, 17))
+                    .addComponent(bu_eliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(bu_ejecutar, javax.swing.GroupLayout.DEFAULT_SIZE, 74, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -120,9 +123,14 @@ public class appArbol extends javax.swing.JFrame {
 
     private void bu_agregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bu_agregarMouseClicked
         // TODO add your handling code here:
-        boolean rta = a1.agregar(a1.subArbol(tf_padre.getText()), tf_hijo.getText());
-        
-        ta_rta.setText("insertado: " + rta);
+        String padre = tf_padre.getText(), hijo = tf_hijo.getText();
+        if (a1.agregar(a1.subArbol(padre), hijo)) {
+            JOptionPane.showMessageDialog(null, "Elemento insertado");
+            limpiar();
+        }
+        else {
+            JOptionPane.showMessageDialog(null, "Elemento no insertado");
+        }
     }//GEN-LAST:event_bu_agregarMouseClicked
 
     private void bu_ejecutarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bu_ejecutarMouseClicked
