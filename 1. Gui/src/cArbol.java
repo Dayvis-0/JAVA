@@ -97,20 +97,35 @@ public class cArbol {
     }
     
     public boolean eliminar(Object pEliminar) {
-        boolean rta = false;
-        if (!isEmpty()) {
-            if (aPHijo != null) {
-                aPHijo = aPHijo.sSHermano();
-                return true;
-            }
-            else {
-                rta = aPHijo.eliminar(pEliminar);
-            }
-            if (!rta && aSHermano != null) {
-                
-            }
+        if (isEmpty() || pEliminar == null) { return false; }
+         
+        if (aPHijo != null && aPHijo.sRaiz().equals(pEliminar)) {
+            cArbol eliminado = aPHijo;
+            cArbol hijos = eliminado.sSHijo();
+
+            aPHijo = hijos;
+            
+            return true;
         }
-        return rta;
+        
+        if (aSHermano != null && aSHermano.sRaiz().equals(aRaiz)) {
+            cArbol eliminado = aSHermano;
+            cArbol hermanos = eliminado.sSHermano();
+            
+            aSHermano = hermanos;
+            
+            return true;
+        }
+        
+        boolean rta = false;
+        if (aPHijo != null) {
+            rta = aPHijo.eliminar(pEliminar);
+        }
+        if (!rta && aSHermano != null) {
+            rta = aSHermano.eliminar(pEliminar);
+        }
+        
+        return false;
     } 
     
     public static void main(String[] args) {
@@ -118,14 +133,19 @@ public class cArbol {
         
         a1.agregar(a1.subArbol(1), "b");
         a1.agregar(a1.subArbol("b"), "c");
+        a1.agregar(a1.subArbol("b"), "x");
+        a1.agregar(a1.subArbol("b"), "y");
+        a1.agregar(a1.subArbol("c"), "d");
+        a1.agregar(a1.subArbol("c"), "e");
+        a1.agregar(a1.subArbol("e"), "f");
         
-        System.out.println("El arbol: " + a1.mostrar());
-        if (a1.eliminar(a1.subArbol("c"))) {
-            System.out.println("Eliminado:");
+        System.out.println("El arbol: " + a1.recorrerArbol());
+        if (a1.eliminar("c")) {
+            System.out.println("Eliminado");
         }
         else {
             System.out.println("No eliminado");
         }
-        System.out.println("El subarbol: " + a1.mostrar());
+        System.out.println("El subarbol: " + a1.recorrerArbol());
     }
 }    
