@@ -174,4 +174,89 @@ public class cArbol {
         }
         return al;
     }
+    
+    public String recorrerArbol() {
+        String rta = "";
+        if (!estaVacio()) {
+            rta = aRaiz + "";
+            if (aPhijo != null) { rta = rta + " " + aPhijo.recorrerArbol(); }
+            if (aShermano != null) { rta = rta + " " + aShermano.recorrerArbol(); }
+        }
+        return rta;
+    }
+
+    public boolean eliminar(Object pEliminar) {
+        if (estaVacio() || pEliminar == null) return false;
+
+        // Caso 1: el primer hijo debe ser eliminado
+        if (aPhijo != null && aPhijo.sRaiz().equals(pEliminar)) {
+            cArbol eliminado = aPhijo;
+            cArbol hijosDelEliminado = eliminado.sPhijo();
+            cArbol hermanosDelEliminado = eliminado.sShermano();
+
+            if (hijosDelEliminado != null) {
+                // Buscar el último hermano de los hijos
+                cArbol temp = hijosDelEliminado;
+                while (temp.sShermano() != null) {
+                    temp = temp.sShermano();
+                }
+                temp.mShermano(hermanosDelEliminado); // reconectar hermanos
+                aPhijo = hijosDelEliminado;           // subir hijos
+            } else {
+                aPhijo = hermanosDelEliminado;        // simplemente quitar
+            }
+            return true;
+        }
+
+        // Caso 2: un hermano debe ser eliminado
+        if (aShermano != null && aShermano.sRaiz().equals(pEliminar)) {
+            cArbol eliminado = aShermano;
+            cArbol hijosDelEliminado = eliminado.sPhijo();
+            cArbol hermanosDelEliminado = eliminado.sShermano();
+
+            if (hijosDelEliminado != null) {
+                cArbol temp = hijosDelEliminado;
+                while (temp.sShermano() != null) {
+                    temp = temp.sShermano();
+                }
+                temp.mShermano(hermanosDelEliminado);
+                aShermano = hijosDelEliminado;
+            } else {
+                aShermano = hermanosDelEliminado;
+            }
+            return true;
+        }
+
+        // Recursión: buscar entre hijos y hermanos
+        boolean eliminado = false;
+        if (aPhijo != null) {
+            eliminado = aPhijo.eliminar(pEliminar);
+        }
+        if (!eliminado && aShermano != null) {
+            eliminado = aShermano.eliminar(pEliminar);
+        }
+
+        return eliminado;
+    }
+
+    public static void main(String[] args) {
+        cArbol a1 = new cArbol();
+        
+        a1.agregar(a1.subArbol(1), "b");
+        a1.agregar(a1.subArbol("b"), "c");
+        a1.agregar(a1.subArbol("b"), "x");
+        a1.agregar(a1.subArbol("b"), "y");
+        a1.agregar(a1.subArbol("c"), "d");
+        a1.agregar(a1.subArbol("c"), "e");
+        a1.agregar(a1.subArbol("e"), "f");
+        
+        System.out.println("El arbol: " + a1.recorrerArbol());
+        if (a1.eliminar("d")) {
+            System.out.println("Eliminado");
+        }
+        else {
+            System.out.println("No eliminado");
+        }
+        System.out.println("El subarbol: " + a1.recorrerArbol());
+    }
 }

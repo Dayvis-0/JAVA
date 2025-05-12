@@ -97,22 +97,44 @@ public class cArbol {
     }
     
     public boolean eliminar(Object pEliminar) {
-        if (isEmpty() || pEliminar == null) { return false; }
+        if (isEmpty() || pEliminar == null) return false;
          
         if (aPHijo != null && aPHijo.sRaiz().equals(pEliminar)) {
             cArbol eliminado = aPHijo;
             cArbol hijos = eliminado.sSHijo();
-
-            aPHijo = hijos;
+            cArbol hermanos = eliminado.sSHermano();
+            
+            if (hijos != null) {
+                cArbol temp = hijos;
+                while (temp.sSHermano() != null) {
+                    temp = temp.sSHermano();
+                }
+                temp.mSHermano(hermanos);
+                aPHijo = hijos;
+            }
+            else {
+                aPHijo = hermanos;
+            }
             
             return true;
         }
         
         if (aSHermano != null && aSHermano.sRaiz().equals(aRaiz)) {
             cArbol eliminado = aSHermano;
+            cArbol hijos = eliminado.sSHijo();
             cArbol hermanos = eliminado.sSHermano();
             
-            aSHermano = hermanos;
+            if (hijos != null) {
+                cArbol temp = hijos;
+                while (temp.sSHermano() != null) {
+                    temp = temp.sSHermano();
+                }
+                temp.mSHermano(hermanos);
+                aSHermano = hijos;
+            }
+            else {
+                aSHermano = hermanos;
+            }
             
             return true;
         }
@@ -125,7 +147,7 @@ public class cArbol {
             rta = aSHermano.eliminar(pEliminar);
         }
         
-        return false;
+        return rta;
     } 
     
     public static void main(String[] args) {
