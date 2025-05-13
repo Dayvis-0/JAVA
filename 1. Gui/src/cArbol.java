@@ -22,6 +22,7 @@ public class cArbol {
     public cArbol sSHermano() { return aSHermano;}
     
     public boolean isEmpty() {return (aRaiz == null); }
+    
     public cArbol subArbol(Object pRaiz) {
         cArbol rta = null;
         if (!isEmpty()) {
@@ -36,19 +37,19 @@ public class cArbol {
         return rta;
     }
     
-    private boolean agregarHermano(Object pRaiz) {
+    private boolean addBrother(Object pRaiz) {
         boolean rta = false;
         if (aSHermano == null) {
             aSHermano = new cArbol(pRaiz);
             rta = true;
         }
         else {
-            rta = aSHermano.agregarHermano(pRaiz);
+            rta = aSHermano.addBrother(pRaiz);
         }
         return rta; 
-    }
+    }   
     
-    private boolean agregarHijo(Object pRaiz) {
+    private boolean addSon(Object pRaiz) {
         boolean rta = false;
         
         if (aPHijo == null) {
@@ -56,13 +57,13 @@ public class cArbol {
             rta = true;
         }
         else {
-            rta = aPHijo.agregarHermano(pRaiz);
+            rta = aPHijo.addBrother(pRaiz);
             rta = true;
         }
         return rta;
     }
     
-    public boolean agregar(cArbol pArbolPadre, Object pRaiz) {
+    public boolean add(cArbol pArbolPadre, Object pRaiz) {
         boolean rta = false;
         if (isEmpty() && pArbolPadre == null){
             aRaiz = pRaiz;
@@ -70,33 +71,33 @@ public class cArbol {
         }
         else {
             if (pArbolPadre != null) {
-                rta = pArbolPadre.agregarHijo(pRaiz);
+                rta = pArbolPadre.addSon(pRaiz);
             }
         }
         return rta;
     }
     
-    public String recorrerArbol() {
+    public String travelTree() {
         String rta = "";
         if (!isEmpty()) {
             rta = aRaiz + " ";
-            if (aPHijo != null) { rta = rta + " " + aPHijo.recorrerArbol(); }
-            if (aSHermano != null) { rta = rta + " " + aSHermano.recorrerArbol(); }
+            if (aPHijo != null) { rta = rta + " " + aPHijo.travelTree(); }
+            if (aSHermano != null) { rta = rta + " " + aSHermano.travelTree(); }
         }
         return rta;
     }
     
-    public int contarNodos() {
+    public int countNodes() {
         int rta = 0;
         if (!isEmpty()) {
             rta = 1;
-            if (aPHijo != null) { rta = rta + aPHijo.contarNodos(); }
-            if (aSHermano != null) { rta = rta + aSHermano.contarNodos(); }
+            if (aPHijo != null) { rta = rta + aPHijo.countNodes(); }
+            if (aSHermano != null) { rta = rta + aSHermano.countNodes(); }
         }
         return rta;
     }
     
-    public boolean eliminar(Object pEliminar) {
+    public boolean delete(Object pEliminar) {
         if (isEmpty() || pEliminar == null) return false;
          
         if (aPHijo != null && aPHijo.sRaiz().equals(pEliminar)) {
@@ -141,33 +142,43 @@ public class cArbol {
         
         boolean rta = false;
         if (aPHijo != null) {
-            rta = aPHijo.eliminar(pEliminar);
+            rta = aPHijo.delete(pEliminar);
         }
         if (!rta && aSHermano != null) {
-            rta = aSHermano.eliminar(pEliminar);
+            rta = aSHermano.delete(pEliminar);
         }
         
         return rta;
     } 
     
+    public boolean isSon(Object pRaiz) {
+        boolean rta = false;
+        if (!isEmpty()) {
+            if (aRaiz.equals(pRaiz) && aPHijo == null) { rta =true; }
+            if (!rta && aPHijo != null) { rta = aPHijo.isSon(pRaiz); } 
+            if (!rta && aSHermano != null) { rta = aSHermano.isSon(pRaiz); } 
+        }
+        return rta;
+    }
+    
     public static void main(String[] args) {
         cArbol a1 = new cArbol();
         
-        a1.agregar(a1.subArbol(1), "b");
-        a1.agregar(a1.subArbol("b"), "c");
-        a1.agregar(a1.subArbol("b"), "x");
-        a1.agregar(a1.subArbol("b"), "y");
-        a1.agregar(a1.subArbol("c"), "d");
-        a1.agregar(a1.subArbol("c"), "e");
-        a1.agregar(a1.subArbol("e"), "f");
+        a1.add(a1.subArbol(1), "b");
+        a1.add(a1.subArbol("b"), "c");
+        a1.add(a1.subArbol("b"), "x");
+        a1.add(a1.subArbol("b"), "y");
+        a1.add(a1.subArbol("c"), "d");
+        a1.add(a1.subArbol("c"), "e");
+        a1.add(a1.subArbol("e"), "f");
         
-        System.out.println("El arbol: " + a1.recorrerArbol());
-        if (a1.eliminar("c")) {
+        System.out.println("El arbol: " + a1.travelTree());
+        if (a1.delete("c")) {
             System.out.println("Eliminado");
         }
         else {
             System.out.println("No eliminado");
         }
-        System.out.println("El subarbol: " + a1.recorrerArbol());
+        System.out.println("El subarbol: " + a1.travelTree());
     }
 }    

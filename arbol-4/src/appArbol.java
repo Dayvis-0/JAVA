@@ -1,23 +1,12 @@
-import javax.swing.JOptionPane;
-
 public class appArbol extends javax.swing.JFrame {
-    private cArbol a1;
-    
+    //... atributos
+    private cArbol aA;
     public appArbol() {
         initComponents();
-        
-        a1 = new cArbol();
+        //... construir arbol
+        aA= new cArbol();
     }
-    
-    public int contarNodos(cArbol pA1) {
-        if (pA1 == null) { return 0; }
-        else {
-            return 1 + contarNodos(pA1.sSHermano()) + contarNodos(pA1.sSHijo());
-        }
-    }
-    
-    private void limpiar() { tf_padre.setText(""); tf_hijo.setText("");}
-
+    private void limpiar(){ tf_padre.setText(""); tf_hijo.setText(""); }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -26,19 +15,28 @@ public class appArbol extends javax.swing.JFrame {
         la_hijo = new javax.swing.JLabel();
         tf_padre = new javax.swing.JTextField();
         tf_hijo = new javax.swing.JTextField();
+        la_metodo = new javax.swing.JLabel();
+        cb_metodo = new javax.swing.JComboBox<>();
         bu_agregar = new javax.swing.JButton();
-        la_operacion = new javax.swing.JLabel();
-        cb_operaciones = new javax.swing.JComboBox<>();
-        bu_ejecutar = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        ta_rta = new javax.swing.JTextArea();
         bu_eliminar = new javax.swing.JButton();
+        bu_ejecutar = new javax.swing.JButton();
+        sp_rta = new javax.swing.JScrollPane();
+        ta_rta = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Arbol jerarquico");
 
         la_padre.setText("Padre:");
 
         la_hijo.setText("Hijo:");
+
+        tf_padre.setColumns(5);
+
+        tf_hijo.setColumns(5);
+
+        la_metodo.setText("Métodos:");
+
+        cb_metodo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Esta vacio", "Sub arbol", "Recorre nodos", "Contar nodos en clase", "Contar nodos en aplicación", "Es hijo", "Es padre (falta hacer)", "Pre-orden", "In-orden (falta hacer)", "Pos-orden (falta hacer)" }));
 
         bu_agregar.setText("Agregar");
         bu_agregar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -47,9 +45,7 @@ public class appArbol extends javax.swing.JFrame {
             }
         });
 
-        la_operacion.setText("Operacion:");
-
-        cb_operaciones.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Esta vacio?", "SubArbol", "Recorrer nodos", "Contar nodos desde la clase ", "Contar nodos desde la aplicacion", "Es hIjo?" }));
+        bu_eliminar.setText("Eliminar");
 
         bu_ejecutar.setText("Ejecutar");
         bu_ejecutar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -60,93 +56,98 @@ public class appArbol extends javax.swing.JFrame {
 
         ta_rta.setColumns(20);
         ta_rta.setRows(5);
-        jScrollPane1.setViewportView(ta_rta);
-
-        bu_eliminar.setText("Eliminar");
+        sp_rta.setViewportView(ta_rta);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(14, 14, 14)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(la_operacion, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(la_metodo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cb_operaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(cb_metodo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(la_hijo, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(4, 4, 4)
-                        .addComponent(tf_hijo, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(la_hijo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(tf_hijo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(la_padre, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(la_padre)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tf_padre, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(bu_agregar, javax.swing.GroupLayout.DEFAULT_SIZE, 74, Short.MAX_VALUE)
-                    .addComponent(bu_eliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(bu_ejecutar, javax.swing.GroupLayout.DEFAULT_SIZE, 74, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33))
+                        .addComponent(tf_padre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(bu_agregar)
+                    .addComponent(bu_eliminar)
+                    .addComponent(bu_ejecutar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(sp_rta, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(sp_rta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(la_padre)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(tf_padre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(bu_agregar)))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(la_hijo)
-                                .addComponent(tf_hijo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(bu_eliminar))
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(la_operacion)
-                            .addComponent(cb_operaciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(la_hijo)
+                            .addComponent(tf_hijo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(bu_eliminar))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(la_metodo)
+                            .addComponent(cb_metodo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(bu_ejecutar))))
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void bu_agregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bu_agregarMouseClicked
-        // TODO add your handling code here:
-        String padre = tf_padre.getText(), hijo = tf_hijo.getText();
-        if (a1.add(a1.subArbol(padre), hijo)) {
-            JOptionPane.showMessageDialog(null, "Elemento insertado");
+        //... leer datos
+        String padre= tf_padre.getText(), hijo= tf_hijo.getText();
+        //... procesar datos
+        if(aA.agregar(aA.subArbol(padre), hijo)){
+            ta_rta.setText("Elemento insertado...");
             limpiar();
         }
-        else {
-            JOptionPane.showMessageDialog(null, "Elemento no insertado");
-        }
+        else{ta_rta.setText("Elemento no insertado...");}
     }//GEN-LAST:event_bu_agregarMouseClicked
-
+    public int contarNodos(cArbol pArbol){
+        if(pArbol == null){ return 0; }
+        else{
+            return 1+contarNodos(pArbol.sPhijo())+contarNodos(pArbol.sShermano());
+        }
+    }
     private void bu_ejecutarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bu_ejecutarMouseClicked
-        // TODO add your handling code here:
-        int posi = cb_operaciones.getSelectedIndex();
-        
-        switch (posi) {
-            case 0: ta_rta.setText("Esta vacio: " + a1.isEmpty()); break;
-            case 1: ta_rta.setText("Sub arbol: " + a1.subArbol(tf_hijo.getText())); break;
-            case 2: ta_rta.setText("Elementos: " + a1.travelTree()); break;
-            case 3: ta_rta.setText("Total nodos en la clase: " + a1.countNodes()); break;
-            case 4: ta_rta.setText("Total nodos en la aplicacion: " + contarNodos(a1)); break;
-            case 5: ta_rta.setText("Es hijo: " + a1.isSon(tf_hijo.getText())); break;
-        } 
+        //... leer datos
+        int opc= cb_metodo.getSelectedIndex();
+        switch (opc) {
+            case 0: ta_rta.setText("Esta vacio: "+aA.estaVacio()); break;
+            case 1: ta_rta.setText("Sub arbol: "+aA.subArbol(tf_hijo.getText())); break;
+            case 2: ta_rta.setText("Elementos: "+aA.recorreArbol());break;
+            case 3: ta_rta.setText("Total nodos: "+aA.contarNodos()); break;
+            case 4: ta_rta.setText("Total nodos: "+contarNodos(aA)); break;
+            case 5: ta_rta.setText("Es hijo: "+aA.esHijo(tf_hijo.getText())); break;
+            case 6: ta_rta.setText("Es padre: "+aA.esPadre(tf_hijo.getText())); break;
+            case 7: ta_rta.setText("Pre orden: "+aA.preOrden()); break;
+        }
     }//GEN-LAST:event_bu_ejecutarMouseClicked
 
+    /**
+     * @param args the command line arguments
+     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -174,10 +175,7 @@ public class appArbol extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                appArbol ap1 = new appArbol();
-                
-                ap1.setVisible(true);
-                ap1.setLocationRelativeTo(null);
+                new appArbol().setVisible(true);
             }
         });
     }
@@ -186,11 +184,11 @@ public class appArbol extends javax.swing.JFrame {
     private javax.swing.JButton bu_agregar;
     private javax.swing.JButton bu_ejecutar;
     private javax.swing.JButton bu_eliminar;
-    private javax.swing.JComboBox<String> cb_operaciones;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JComboBox<String> cb_metodo;
     private javax.swing.JLabel la_hijo;
-    private javax.swing.JLabel la_operacion;
+    private javax.swing.JLabel la_metodo;
     private javax.swing.JLabel la_padre;
+    private javax.swing.JScrollPane sp_rta;
     private javax.swing.JTextArea ta_rta;
     private javax.swing.JTextField tf_hijo;
     private javax.swing.JTextField tf_padre;
