@@ -16,9 +16,9 @@
     //... metodos basicos
     public boolean estaVacio(){ return (aRaiz==null); }
     public cArbol subArbol(Object pRaiz){
-        cArbol rta= null;
+        cArbol rta = null;
         if(!estaVacio()){
-            if(aRaiz.equals(pRaiz)){ rta= this; }
+            if(aRaiz.equals(pRaiz)){ rta = this; }
             else{
                 if(aPhijo != null){ rta= aPhijo.subArbol(pRaiz); }
                 if(rta == null && aShermano != null){

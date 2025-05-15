@@ -154,10 +154,24 @@ public class cArbol {
     public boolean isSon(Object pRaiz) {
         boolean rta = false;
         if (!isEmpty()) {
-            if (aRaiz.equals(pRaiz) && aPHijo == null) { rta =true; }
+            if (aRaiz.equals(pRaiz) && aPHijo == null) { rta = true; }
             if (!rta && aPHijo != null) { rta = aPHijo.isSon(pRaiz); } 
             if (!rta && aSHermano != null) { rta = aSHermano.isSon(pRaiz); } 
         }
+        return rta;
+    }
+    
+    public boolean modify(Object pRaiz, Object pNValor) {
+        boolean rta = false;
+        cArbol arbolEncontrado;
+        
+        arbolEncontrado = subArbol(pRaiz);
+        
+        if (arbolEncontrado != null) {
+            arbolEncontrado.mRaiz(pNValor);
+            rta = true;
+        }
+        
         return rta;
     }
     

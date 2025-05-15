@@ -33,6 +33,7 @@ public class appArbol extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         ta_rta = new javax.swing.JTextArea();
         bu_eliminar = new javax.swing.JButton();
+        bu_modificar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -63,6 +64,18 @@ public class appArbol extends javax.swing.JFrame {
         jScrollPane1.setViewportView(ta_rta);
 
         bu_eliminar.setText("Eliminar");
+        bu_eliminar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bu_eliminarMouseClicked(evt);
+            }
+        });
+
+        bu_modificar.setText("Modificar");
+        bu_modificar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bu_modificarMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -87,10 +100,14 @@ public class appArbol extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(bu_agregar, javax.swing.GroupLayout.DEFAULT_SIZE, 74, Short.MAX_VALUE)
                     .addComponent(bu_eliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(bu_ejecutar, javax.swing.GroupLayout.DEFAULT_SIZE, 74, Short.MAX_VALUE))
+                    .addComponent(bu_modificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(64, 64, 64)
+                .addComponent(bu_ejecutar, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -114,8 +131,10 @@ public class appArbol extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(la_operacion)
                             .addComponent(cb_operaciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(bu_ejecutar))))
-                .addContainerGap(15, Short.MAX_VALUE))
+                            .addComponent(bu_modificar))))
+                .addGap(18, 18, 18)
+                .addComponent(bu_ejecutar)
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         pack();
@@ -146,6 +165,23 @@ public class appArbol extends javax.swing.JFrame {
             case 5: ta_rta.setText("Es hijo: " + a1.isSon(tf_hijo.getText())); break;
         } 
     }//GEN-LAST:event_bu_ejecutarMouseClicked
+
+    private void bu_eliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bu_eliminarMouseClicked
+        // TODO add your handling code here:
+        
+
+    }//GEN-LAST:event_bu_eliminarMouseClicked
+
+    private void bu_modificarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bu_modificarMouseClicked
+        // TODO add your handling code here:
+        if (a1.modify(tf_padre, tf_hijo)) {
+            JOptionPane.showMessageDialog(null, "Modificado");
+            limpiar();
+        }
+        else {
+            JOptionPane.showMessageDialog(null, "No modificado");
+        }
+    }//GEN-LAST:event_bu_modificarMouseClicked
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -186,6 +222,7 @@ public class appArbol extends javax.swing.JFrame {
     private javax.swing.JButton bu_agregar;
     private javax.swing.JButton bu_ejecutar;
     private javax.swing.JButton bu_eliminar;
+    private javax.swing.JButton bu_modificar;
     private javax.swing.JComboBox<String> cb_operaciones;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel la_hijo;

@@ -46,11 +46,16 @@
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="bu_agregar" pref="74" max="32767" attributes="0"/>
                   <Component id="bu_eliminar" max="32767" attributes="0"/>
-                  <Component id="bu_ejecutar" pref="74" max="32767" attributes="0"/>
+                  <Component id="bu_modificar" max="32767" attributes="0"/>
               </Group>
               <EmptySpace pref="27" max="32767" attributes="0"/>
               <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
+              <Component id="bu_ejecutar" min="-2" pref="74" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -80,11 +85,13 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="la_operacion" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="cb_operaciones" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="bu_ejecutar" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="bu_modificar" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace pref="15" max="32767" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="bu_ejecutar" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="17" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -161,6 +168,17 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Eliminar"/>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="bu_eliminarMouseClicked"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="bu_modificar">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Modificar"/>
+      </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="bu_modificarMouseClicked"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

@@ -1,10 +1,11 @@
 public class appArbol extends javax.swing.JFrame {
     //... atributos
     private cArbol aA;
+    
     public appArbol() {
         initComponents();
         //... construir arbol
-        aA= new cArbol();
+        aA = new cArbol();
     }
     private void limpiar(){ tf_padre.setText(""); tf_hijo.setText(""); }
     @SuppressWarnings("unchecked")
