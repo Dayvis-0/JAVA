@@ -151,7 +151,43 @@ public class cArbol {
         return rta;
     } 
     
-    public boolean isSon(Object pRaiz) {
+    public boolean isSon1(Object pRaiz) {
+        boolean rta = false;
+        
+        if (aPHijo != null && aPHijo.equals(pRaiz)) { return true; }
+        
+        cArbol brother = aPHijo;
+        
+        // Buscar entre los hermanos del hijo
+        while (brother != null) {
+            if (brother.aRaiz.equals(pRaiz)) {
+                return true;
+            }
+        }
+        brother = brother.sSHermano();
+        
+        if (aPHijo != null) rta = aPHijo.isSon(pRaiz);
+        if (!rta && aSHermano != null) rta = aSHermano.isSon(pRaiz) ;
+        
+        return rta;
+    }
+    
+    public boolean isSon (Object pRaiz) {
+        boolean rta = false;
+        if (!isEmpty()) {
+            if (aPHijo != null) {
+                cArbol aux = aPHijo;
+                
+                while (aux != null) {
+                    if (aux.aRaiz.equals(pRaiz)) { rta = true; }
+                    aux = aux.aSHermano;
+                }
+            }
+            if (!rta )
+        }
+    }
+    
+    public boolean isLeaf(Object pRaiz) {
         boolean rta = false;
         if (!isEmpty()) {
             if (aRaiz.equals(pRaiz) && aPHijo == null) { rta = true; }
@@ -178,7 +214,7 @@ public class cArbol {
     public static void main(String[] args) {
         cArbol a1 = new cArbol();
         
-        a1.add(a1.subArbol(1), "b");
+        a1.add(a1.subArbol(null), "b");
         a1.add(a1.subArbol("b"), "c");
         a1.add(a1.subArbol("b"), "x");
         a1.add(a1.subArbol("b"), "y");
@@ -186,13 +222,14 @@ public class cArbol {
         a1.add(a1.subArbol("c"), "e");
         a1.add(a1.subArbol("e"), "f");
         
-        System.out.println("El arbol: " + a1.travelTree());
-        if (a1.delete("c")) {
-            System.out.println("Eliminado");
+        System.out.println("Arbol\n" + a1.travelTree() + "\n");
+        
+        if (a1.isSon("c")) {
+            System.out.println("Si");
         }
-        else {
-            System.out.println("No eliminado");
-        }
-        System.out.println("El subarbol: " + a1.travelTree());
+        
+        a1.modify("b", "bb");
+        System.out.println("Arbol\n" + a1.travelTree() + "\n");
+
     }
 }    

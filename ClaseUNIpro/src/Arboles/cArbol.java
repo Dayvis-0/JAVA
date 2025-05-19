@@ -115,12 +115,7 @@ public class cArbol {
         arb1.agregar("1", "2");
         
         System.out.println(arb1.imprimiNodos());
-        if (arb1.modificar("2", "20") == false) {
-            System.out.println("Se modifico");
-        }
-        else {
-            System.out.println("No modifico");
-        }
+        arb1.modificar("2", "20");
         System.out.println(arb1.imprimiNodos());
     }
 }

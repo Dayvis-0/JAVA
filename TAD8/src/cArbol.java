@@ -62,8 +62,7 @@ public class cArbol {
     public boolean esHijo(Object pHijo){
         boolean rta= false;
         if(!estaVacio()){
-            if(aRaiz.equals(pHijo)){
-                if(aPhijo == null){ rta= true; }
+            if(aRaiz.equals(pHijo)){ if(aPhijo == null){ rta= true; }
             }else{
                 if(aPhijo != null){ rta= aPhijo.esHijo(pHijo); }
                 if(!rta && aShermano != null){ rta= aShermano.esHijo(pHijo); }
@@ -175,4 +174,21 @@ public class cArbol {
         }
         return al;
     }
+    
+        public static void main(String[] args) {
+        cArbol a1 = new cArbol();
+        
+        a1.agregar(a1.subArbol(1), "b");
+        a1.agregar(a1.subArbol("b"), "c");
+        a1.agregar(a1.subArbol("b"), "x");
+        a1.agregar(a1.subArbol("b"), "y");
+        a1.agregar(a1.subArbol("c"), "d");
+        a1.agregar(a1.subArbol("c"), "e");
+        a1.agregar(a1.subArbol("e"), "f");
+        
+        if (a1.esHijo("c")) {
+            System.out.println("Si");
+        }
+    }
+    
 }
