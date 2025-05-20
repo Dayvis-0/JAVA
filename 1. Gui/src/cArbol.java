@@ -172,19 +172,34 @@ public class cArbol {
         return rta;
     }
     
-    public boolean isSon (Object pRaiz) {
+    public boolean isSon(Object pRaiz) {
         boolean rta = false;
-        if (!isEmpty()) {
-            if (aPHijo != null) {
-                cArbol aux = aPHijo;
-                
-                while (aux != null) {
-                    if (aux.aRaiz.equals(pRaiz)) { rta = true; }
-                    aux = aux.aSHermano;
-                }
+        if(!isEmpty()) {
+            if(aRaiz.equals(pRaiz)) {
+                if (aPHijo == null) { rta = true; }
             }
-            if (!rta )
+            else {
+                if (aPHijo != null) { rta = aPHijo.isSon(pRaiz); }
+                if (!rta && aSHermano != null) { rta = aSHermano.isSon(pRaiz); }
+            }
         }
+        return rta;
+    }
+    
+    public boolean isDad(Object pRaiz) {
+        boolean rta = false;
+        
+        if (!isEmpty()) {
+            if (aRaiz.equals(pRaiz)) {
+                if (aPHijo != null) { rta = true; }
+            }
+            else {
+                if( aPHijo != null  ) { rta = aPHijo.isSon(pRaiz); }
+                if (!rta && aSHermano != null) { rta = aSHermano.isSon(pRaiz); }
+            }
+        }
+        
+        return rta;
     }
     
     public boolean isLeaf(Object pRaiz) {
@@ -199,15 +214,53 @@ public class cArbol {
     
     public boolean modify(Object pRaiz, Object pNValor) {
         boolean rta = false;
-        cArbol arbolEncontrado;
         
-        arbolEncontrado = subArbol(pRaiz);
-        
-        if (arbolEncontrado != null) {
-            arbolEncontrado.mRaiz(pNValor);
+        if (subArbol(pRaiz) != null) {
+            subArbol(pRaiz).mRaiz(pNValor);
             rta = true;
         }
-        
+        return rta;
+    }
+    
+    public String brotherPreO() {
+        String rta = "";
+        if (aSHermano != null) {
+            rta = aSHermano.preOrder();
+            rta = rta + aSHermano.brotherPreO();
+        }
+        return rta;
+    }
+    
+    // Pre -> Raiz | subarbol izquierdo | subarbol derecho
+    public String preOrder() {
+        String rta = "";
+        if (!isEmpty()) {
+            rta = aRaiz + " "; // Primero la raiz
+            if (aPHijo != null) {
+                rta = rta + aPHijo.preOrder(); // Muestra en preorden el primer hijo
+                rta = rta + aPHijo.brotherPreO(); // muestro los hermanos del primer hijo en preorden
+            }
+        }
+        return rta;
+    }
+    
+    public String brotherInO() {
+        String rta = " ";
+        if (aSHermano != null) {
+            rta = aSHermano.inOrder();
+            rta = rta + aSHermano.brotherInO();
+        }
+        return rta;
+    }
+    
+    // Inorden -> Subarbol izquierdo | raiz | subarbol derecho
+    public String inOrder() {
+        String rta = "";
+        if (!isEmpty()) {
+            if (aPHijo != null) { rta = aPHijo.inOrder(); } 
+            rta = rta + " " + aRaiz; // en medio muestro la raiz
+            if (aPHijo != null) { rta = rta + aPHijo.brotherInO(); }
+        }
         return rta;
     }
     
@@ -217,19 +270,21 @@ public class cArbol {
         a1.add(a1.subArbol(null), "b");
         a1.add(a1.subArbol("b"), "c");
         a1.add(a1.subArbol("b"), "x");
-        a1.add(a1.subArbol("b"), "y");
-        a1.add(a1.subArbol("c"), "d");
-        a1.add(a1.subArbol("c"), "e");
-        a1.add(a1.subArbol("e"), "f");
         
         System.out.println("Arbol\n" + a1.travelTree() + "\n");
         
         if (a1.isSon("c")) {
-            System.out.println("Si");
+            System.out.println("C es hijo Si");
         }
         
         a1.modify("b", "bb");
         System.out.println("Arbol\n" + a1.travelTree() + "\n");
-
+        
+        if (a1.isDad("b")) {
+            System.out.println("c es padre");
+        }
+        
+        System.out.println("Recorrido en PreOrden - Raiz - izquierdo - derecho\n " + a1.preOrder());
+        System.out.println("\nRecorrido en InOrden - Raiz - izquierdo - derecho\n " + a1.inOrder());
     }
 }    
