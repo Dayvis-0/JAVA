@@ -12,6 +12,7 @@ public class appArbol extends javax.swing.JFrame {
     public int contarNodos(cArbol pA1) {
         if (pA1 == null) { return 0; }
         else {
+            sadas
             return 1 + contarNodos(pA1.sSHermano()) + contarNodos(pA1.sSHijo());
         }
     }
