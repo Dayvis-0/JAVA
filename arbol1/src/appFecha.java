@@ -232,9 +232,7 @@ public class appFecha extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                appFecha a1 = new appFecha();
-                a1.setVisible(true);
-                a1.setLocationRelativeTo(null);
+                new appFecha().setVisible(true);
             }
         });
     }

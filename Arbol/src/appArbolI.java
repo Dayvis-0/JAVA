@@ -1,57 +1,62 @@
-public class appArbol extends javax.swing.JFrame {
+public class appArbolI extends javax.swing.JFrame {
     //... atributos
-    private cArbol aA;
-    
-    public appArbol() {
+    private cArbolI aAi;
+    public appArbolI() {
         initComponents();
         //... construir arbol
-        aA = new cArbol();
+        aAi= new cArbolI();
+        /*aAi.mRaiz(new cNodoA("a"));
+        aAi.sRaiz().mPhijo(new cNodoA("b"));
+        aAi.sRaiz().sPhijo().mShermano(new cNodoA("c"));*/
     }
-    private void limpiar(){ tf_padre.setText(""); tf_hijo.setText(""); }
+    private void limpiar(){
+        tf_padre.setText("");
+        tf_hijo.setText("");
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         la_padre = new javax.swing.JLabel();
-        la_hijo = new javax.swing.JLabel();
         tf_padre = new javax.swing.JTextField();
+        la_hijo = new javax.swing.JLabel();
         tf_hijo = new javax.swing.JTextField();
         la_metodo = new javax.swing.JLabel();
         cb_metodo = new javax.swing.JComboBox<>();
-        bu_agregar = new javax.swing.JButton();
-        bu_eliminar = new javax.swing.JButton();
         bu_ejecutar = new javax.swing.JButton();
+        bu_eliminar = new javax.swing.JButton();
+        bu_agregar = new javax.swing.JButton();
         sp_rta = new javax.swing.JScrollPane();
         ta_rta = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Arbol jerarquico");
+        setTitle("Arbol Jerarquico Iterativo");
 
         la_padre.setText("Padre:");
 
-        la_hijo.setText("Hijo:");
-
         tf_padre.setColumns(5);
+
+        la_hijo.setText("Hijo:");
 
         tf_hijo.setColumns(5);
 
         la_metodo.setText("Métodos:");
 
-        cb_metodo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Esta vacio", "Sub arbol", "Recorre nodos", "Contar nodos en clase", "Contar nodos en aplicación", "Es hijo", "Es padre (falta hacer)", "Pre-orden", "In-orden (falta hacer)", "Pos-orden (falta hacer)" }));
-
-        bu_agregar.setText("Agregar");
-        bu_agregar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                bu_agregarMouseClicked(evt);
-            }
-        });
-
-        bu_eliminar.setText("Eliminar");
+        cb_metodo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Esta vacio", "Nodo", "Recorre nodos", "Contar nodos en clase", "Contar nodos en aplicación", "Es hijo", "Es padre", "Pre-orden", "Padre (falta hacer)", "In-orden", "Pos-orden", "Contar padres", "Contar hijos", "Existe", "Altura", "Nivel", "Recorre padres", "Recorre hijos", "Mayor" }));
 
         bu_ejecutar.setText("Ejecutar");
         bu_ejecutar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 bu_ejecutarMouseClicked(evt);
+            }
+        });
+
+        bu_eliminar.setText("Eliminar");
+
+        bu_agregar.setText("Agregar");
+        bu_agregar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bu_agregarMouseClicked(evt);
             }
         });
 
@@ -115,36 +120,42 @@ public class appArbol extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void bu_ejecutarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bu_ejecutarMouseClicked
+        //... leer datos
+        int opc= cb_metodo.getSelectedIndex();
+        switch (opc) {
+            case 0: ta_rta.setText("Esta vacio: "+aAi.estaVacio()); break;
+            case 1: ta_rta.setText("Nodo: "+aAi.nodo(tf_hijo.getText())); break;
+            /*case 2: ta_rta.setText("Elementos: "+aA.recorreArbol());break;
+            case 3: ta_rta.setText("Total nodos: "+aA.nodos()); break;
+            case 4: ta_rta.setText("Total nodos: "+contarNodos(aA)); break;
+            case 5: ta_rta.setText("Es hijo: "+aA.esHijo(tf_hijo.getText())); break;
+            case 6: ta_rta.setText("Es padre: "+aA.esPadre(tf_hijo.getText())); break;
+            case 7: ta_rta.setText("Pre orden: "+aA.preOrden()); break;
+            case 8: ta_rta.setText("Padre: "+aA.padre(tf_hijo.getText())); break;
+            case 9: ta_rta.setText("In orden: "+aA.inOrden()); break;
+            case 10: ta_rta.setText("Pos orden: "+aA.posOrden()); break;
+            case 11: ta_rta.setText("Padres: "+aA.padres()); break;
+            case 12: ta_rta.setText("Hijos: "+aA.hijos()); break;
+            case 13: ta_rta.setText("Existe: "+aA.existe(tf_hijo.getText())); break;
+            case 14: ta_rta.setText("Altura: "+aA.altura()); break;
+            case 15: ta_rta.setText("Nivel: "+aA.nivel(tf_hijo.getText(), 0)); break;
+            case 16: ta_rta.setText("Padres: "+aA.recorrePadre()); break;
+            case 17: ta_rta.setText("Hijos: "+aA.recorreHijo()); break;
+            case 18: ta_rta.setText("Mayor: "+aA.mayor()); break;*/
+        }
+    }//GEN-LAST:event_bu_ejecutarMouseClicked
+
     private void bu_agregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bu_agregarMouseClicked
         //... leer datos
         String padre= tf_padre.getText(), hijo= tf_hijo.getText();
         //... procesar datos
-        if(aA.agregar(aA.subArbol(padre), hijo)){
+        if(aAi.agregar(padre, hijo)){
             ta_rta.setText("Elemento insertado...");
             limpiar();
         }
         else{ta_rta.setText("Elemento no insertado...");}
     }//GEN-LAST:event_bu_agregarMouseClicked
-    public int contarNodos(cArbol pArbol){
-        if(pArbol == null){ return 0; }
-        else{
-            return 1+contarNodos(pArbol.sPhijo())+contarNodos(pArbol.sShermano());
-        }
-    }
-    private void bu_ejecutarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bu_ejecutarMouseClicked
-        //... leer datos
-        int opc= cb_metodo.getSelectedIndex();
-        switch (opc) {
-            case 0: ta_rta.setText("Esta vacio: "+aA.estaVacio()); break;
-            case 1: ta_rta.setText("Sub arbol: "+aA.subArbol(tf_hijo.getText())); break;
-            case 2: ta_rta.setText("Elementos: "+aA.recorreArbol());break;
-            case 3: ta_rta.setText("Total nodos: "+aA.contarNodos()); break;
-            case 4: ta_rta.setText("Total nodos: "+contarNodos(aA)); break;
-            case 5: ta_rta.setText("Es hijo: "+aA.esHijo(tf_hijo.getText())); break;
-            case 6: ta_rta.setText("Es padre: "+aA.esPadre(tf_hijo.getText())); break;
-            case 7: ta_rta.setText("Pre orden: "+aA.preOrden()); break;
-        }
-    }//GEN-LAST:event_bu_ejecutarMouseClicked
 
     /**
      * @param args the command line arguments
@@ -163,20 +174,20 @@ public class appArbol extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(appArbol.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(appArbolI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(appArbol.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(appArbolI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(appArbol.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(appArbolI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(appArbol.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(appArbolI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new appArbol().setVisible(true);
+                new appArbolI().setVisible(true);
             }
         });
     }

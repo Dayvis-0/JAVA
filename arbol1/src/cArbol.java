@@ -90,8 +90,8 @@ public class cArbol {
             if(aRaiz.equals(pRaiz)){
                 if(aPhijo != null){ rta = true; }
             }else{
-                if(aPhijo != null){ rta= aPhijo.esHijo(pRaiz); }
-                if(!rta && aShermano != null){ rta= aShermano.esHijo(pRaiz);}
+                if(aPhijo != null){ rta= aPhijo.esPadre(pRaiz); }
+                if(!rta && aShermano != null){ rta= aShermano.esPadre(pRaiz);}
             }
         }return rta;
     }
