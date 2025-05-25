@@ -4,6 +4,7 @@ public class appArbol extends javax.swing.JFrame {
     public appArbol() {
         initComponents();
         //... construir arbol
+        // nose
         aA= new cArbol();
     }
     private void limpiar(){ tf_padre.setText(""); tf_hijo.setText(""); }
