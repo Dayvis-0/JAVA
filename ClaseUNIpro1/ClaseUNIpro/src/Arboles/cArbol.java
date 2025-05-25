@@ -87,14 +87,10 @@ public class cArbol {
    public String imprimiNodos() {
        String cadenaDeNodos = "";
        
-       if (aRaiz != null) {
-           cadenaDeNodos = cadenaDeNodos + aRaiz;
-       }
-       
+       if (aRaiz != null) { cadenaDeNodos = cadenaDeNodos + aRaiz; }
        if (aHijo != null) {
            cadenaDeNodos = cadenaDeNodos + " " + aHijo.imprimiNodos();
        }
-       
        if (aHermano != null) {
             cadenaDeNodos = cadenaDeNodos + " " + aHermano.imprimiNodos();
        }
@@ -103,12 +99,9 @@ public class cArbol {
    
    public boolean modificar(Object pRaiz, Object pNvalor) {
         boolean rta = false;
-        cArbol arbolEncontrado;
         
-        arbolEncontrado = buscarSubArbol(pRaiz);
-        
-        if (arbolEncontrado != null) {
-            arbolEncontrado.mRaiz(pNvalor);
+        if (buscarSubArbol(pRaiz) != null) {
+            buscarSubArbol(pRaiz).mRaiz(pNvalor);
         }
         return rta;
    }
@@ -238,14 +231,10 @@ public class cArbol {
     }
     
     public cArbol buscarPadre(Object pHijo) {
-        cArbol arbolPadre;
-        arbolPadre = null;
-        
+        cArbol arbolPadre = null;
         if(aRaiz != null) {
             if(aHijo != null) {
-                if(pHijo.equals(aHijo.sRaiz())) {
-                    arbolPadre = this;
-                }
+                if(pHijo.equals(aHijo.sRaiz())) { arbolPadre = this; }
                 else {
                     arbolPadre = aHijo.buscarPadre(pHijo);
                 }
@@ -382,10 +371,9 @@ public class cArbol {
         
         if(!estaVacio()) {
             rta = aRaiz + " ";
-            if(aHijo != null) { rta = rta + recorrerNodos(); }
-            if(aHermano != null) { rta = rta + recorrerNodos(); }
+            if(aHijo != null) { rta = rta + aHijo.recorrerNodos(); }
+            if(aHermano != null) { rta = rta + aHermano.recorrerNodos(); }
         }
-        
         return rta;
     }
     
@@ -393,20 +381,23 @@ public class cArbol {
         cArbol arb1 = new cArbol();
         
         arb1.agregar(null, "a");
-        arb1.agregar("a", "100");
-        arb1.agregar("a", "x");
         arb1.agregar("a", "y");
         arb1.agregar("a", "b");
         
-        System.out.println(arb1.imprimiNodos());
-        System.out.println("El numero de nodos es:  " + arb1.contarNodos());
-        if (arb1.eliminar("20")) {
-            System.out.println("Eliminado ");
-            System.out.println(arb1.imprimiNodos());
-        }
+        System.out.println("Arbol: " +arb1.recorrerNodos());
+        arb1.modificar("b", "bb");
+        System.out.println("Arbol: " + arb1.recorrerNodos());
+        System.out.println("El padre de y es: " + arb1.buscarPadre("y").sRaiz());
         
-        System.out.println("La altura del arbol es: " + arb1.altura());
-        System.out.println("El nivel del nodo 20: " + arb1.nivel("2", 0));
-        System.out.println("El mayor es: " + arb1.mayor());
+        //System.out.println(arb1.imprimiNodos());
+        //System.out.println("El numero de nodos es:  " + arb1.contarNodos());
+        //if (arb1.eliminar("20")) {
+        //    System.out.println("Eliminado ");
+        //    System.out.println(arb1.imprimiNodos());
+       // }
+        
+        //System.out.println("La altura del arbol es: " + arb1.altura());
+        //System.out.println("El nivel del nodo 20: " + arb1.nivel("2", 0));
+       // System.out.println("El mayor es: " + arb1.mayor());
     }
 }
