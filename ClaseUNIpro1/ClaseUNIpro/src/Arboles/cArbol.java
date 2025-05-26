@@ -388,7 +388,10 @@ public class cArbol {
         arb1.modificar("b", "bb");
         System.out.println("Arbol: " + arb1.recorrerNodos());
         System.out.println("El padre de y es: " + arb1.buscarPadre("y").sRaiz());
-        
+        if (arb1.eliminar("bb")){
+            System.out.println("Eliminado");        
+        }
+        System.out.println("Arbol: " + arb1.recorrerNodos());
         //System.out.println(arb1.imprimiNodos());
         //System.out.println("El numero de nodos es:  " + arb1.contarNodos());
         //if (arb1.eliminar("20")) {
