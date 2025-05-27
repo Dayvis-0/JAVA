@@ -377,21 +377,46 @@ public class cArbol {
         return rta;
     }
     
+    private int primerosHijo() {
+        int rta = 0;
+        if(!estaVacio()) {
+            if(aHijo != null) { rta = 1 + aHijo.primerosHijo(); }
+            if(aHermano != null) { rta = rta + aHermano.primerosHijo(); }
+        }
+        return rta;
+    }
+    
+    private int ultimosHijos() {
+        int rta = 0;
+        if(!estaVacio()) {
+            if(aHijo != null) { rta = aHijo.ultimosHijos();}
+            if(aHermano != null) { rta = rta + 1 + aHermano.ultimosHijos();}
+        }
+        return rta;
+    }
+    
+    public boolean esEquiExtremo() {
+        return (primerosHijo() == ultimosHijos());
+    }
+    
     public static void main(String[] args) {
         cArbol arb1 = new cArbol();
         
-        arb1.agregar(null, "a");
-        arb1.agregar("a", "y");
-        arb1.agregar("a", "b");
+        arb1.agregar(null, "adan");
+        arb1.agregar("adan", "pedro");
+        arb1.agregar("adan", "juan");
+        arb1.agregar("juan", "mario");
+        arb1.agregar("pedro", "luis");
+        arb1.agregar("pedro", "roy");
         
-        System.out.println("Arbol: " +arb1.recorrerNodos());
-        arb1.modificar("b", "bb");
-        System.out.println("Arbol: " + arb1.recorrerNodos());
-        System.out.println("El padre de y es: " + arb1.buscarPadre("y").sRaiz());
-        if (arb1.eliminar("bb")){
-            System.out.println("Eliminado");        
+        System.out.println("Primeros hijos: " + arb1.primerosHijo());
+        System.out.println("Ultimos hijos: " + arb1.ultimosHijos());
+        if(arb1.esEquiExtremo()) {
+            System.out.println("Si");
         }
-        System.out.println("Arbol: " + arb1.recorrerNodos());
+        else {
+            System.out.println("No");
+        }
         //System.out.println(arb1.imprimiNodos());
         //System.out.println("El numero de nodos es:  " + arb1.contarNodos());
         //if (arb1.eliminar("20")) {

@@ -42,7 +42,7 @@
                           <Component id="jLabel2" max="32767" attributes="0"/>
                           <Component id="jLabel1" alignment="1" min="-2" pref="81" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="43" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="tf_padre" alignment="1" min="-2" pref="74" max="-2" attributes="0"/>
                           <Component id="tf_hijo" alignment="1" min="-2" pref="74" max="-2" attributes="0"/>
@@ -145,7 +145,7 @@
     <Component class="javax.swing.JComboBox" name="cb_operaciones">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="15">
+          <StringArray count="16">
             <StringItem index="0" value="Altura"/>
             <StringItem index="1" value="Nivel"/>
             <StringItem index="2" value="Contar nodos"/>
@@ -161,6 +161,7 @@
             <StringItem index="12" value="Recorrer padres"/>
             <StringItem index="13" value="Mayor?"/>
             <StringItem index="14" value="Recorrer: "/>
+            <StringItem index="15" value="EsEqui?"/>
           </StringArray>
         </Property>
       </Properties>

@@ -59,7 +59,7 @@ public class appArbol extends javax.swing.JFrame {
             }
         });
 
-        cb_operaciones.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Altura", "Nivel", "Contar nodos", "Es hijo?", "Es padre?", "Pre-orden", "In-orden", "Pos-orden", "Contar padres", "Contar hijos", "Existe?", "Recorrer hijos", "Recorrer padres", "Mayor?", "Recorrer: " }));
+        cb_operaciones.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Altura", "Nivel", "Contar nodos", "Es hijo?", "Es padre?", "Pre-orden", "In-orden", "Pos-orden", "Contar padres", "Contar hijos", "Existe?", "Recorrer hijos", "Recorrer padres", "Mayor?", "Recorrer: ", "EsEqui?" }));
 
         bu_ejecutar.setText("Ejecutar");
         bu_ejecutar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -89,7 +89,7 @@ public class appArbol extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(tf_padre, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(tf_hijo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -174,7 +174,8 @@ public class appArbol extends javax.swing.JFrame {
             case 11: ta_rta.setText("Recorrer hijos" + pArbol.recorrerHijos()); break;
             case 12: ta_rta.setText("Recorrer padres" + pArbol.recorrerPadres()); break;
             case 13: ta_rta.setText("Mayor? " + pArbol.mayor()); break;
-            case 19: ta_rta.setText("Recorrer: "+pArbol.recorrerNodos()); break;
+            case 14: ta_rta.setText("Recorrer: "+pArbol.recorrerNodos()); break;
+            case 15: ta_rta.setText("Es Equi-Extremo: "+pArbol.esEquiExtremo()); break;
         }
     }//GEN-LAST:event_bu_ejecutarMouseClicked
 

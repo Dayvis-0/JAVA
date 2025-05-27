@@ -291,29 +291,45 @@ public class cArbolPractica {
         }
     }
     
+    private int primerosHijos() {
+        int rta = 0;
+        if(!estaVacio()) {
+            if(aPhijo != null) { rta = 1 + aPhijo.primerosHijos(); }   
+            if(aShermano != null) { rta = rta + aShermano.primerosHijos(); }
+        }
+        return rta;
+    }
+    
+    private int ultimosHijos() {
+        int rta = 0;
+        if(!estaVacio()) {
+            if(aPhijo != null && aPhijo.sShermano() == null) { rta = 1; }
+            if(aPhijo != null) { rta = rta + aPhijo.ultimosHijos(); }
+            if(aShermano != null) { rta = rta + aShermano.ultimosHijos(); }
+        }
+        return rta;
+    }
+    
+    public boolean esEqui() {
+        return (primerosHijos() == ultimosHijos());
+    }
+    
     public static void main(String[] args) {
         cArbolPractica arb1 = new cArbolPractica();
         
         arb1.agregar(null, "a");
-        arb1.agregar(arb1.subArbol("a"), "c");
         arb1.agregar(arb1.subArbol("a"), "b");
+        arb1.agregar(arb1.subArbol("b"), "c");
+        arb1.agregar(arb1.subArbol("c"), "d");
+
         
         System.out.println("Arbol: " + arb1.recorreArbol());
-        ArrayList<Object> nodos = arb1.obtenerNodo();
-        System.out.println("Nodos de un arbol 1: " + nodos);
-        System.out.println("Nodos de un arbol 1: " + nodos);
-        
-        int nume = 1;
-        String nume1 = String.valueOf(nume);
-        String nume2 = "123";
-        
-        char[] charsNodos = arb1.nodosChar();
-        System.out.println("El numero en String: "  + nume1);
-        System.out.println("Numero en 0: " + nume2.charAt(0));
-        System.out.println("Array con char: ");
-        for(char c : charsNodos) {
-            System.out.println(c + " ");
+        if(arb1.esEqui()){
+            System.out.println("Si");
         }
-        System.out.println("");
+        else{
+            System.out.println("No");
+        }
+        
     }
 }
