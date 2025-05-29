@@ -9,8 +9,8 @@ public  class cNodoA {
     protected cNodoA(Object pElemento) { aElemento = pElemento; aPhijo = null; aShermano = null;}
     //...modificadores
     public void mElemento(Object pElemento) { aElemento = pElemento; }
-    public void mPhijo(cNodoA pPhijo) { aElemento = pPhijo; }
-    public void mShermano(cNodoA pShermano) { aElemento = pShermano; }
+    public void mPhijo(cNodoA pPhijo) { aPhijo = pPhijo; }
+    public void mShermano(cNodoA pShermano) { aShermano = pShermano; }
     //... selectores
     public Object sElemento() {return aElemento; }
     public cNodoA sPhijo() {return aPhijo; }

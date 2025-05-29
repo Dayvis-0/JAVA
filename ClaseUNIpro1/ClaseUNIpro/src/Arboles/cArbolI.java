@@ -1,7 +1,6 @@
 package Arboles;
 import java.util.Stack;
 
-
 public class cArbolI {
     //... atributos
     cNodoA aRaiz;
@@ -22,12 +21,12 @@ public class cArbolI {
             boolean encontrado = false;
             cNodoA dir = null;
             
-            while(!estaVacio() && !pila.isEmpty()) {
+            while(!encontrado && !pila.isEmpty()) {
                 dir = pila.pop();
                 
                 if(dir.sElemento().equals(pRaiz)) {
-                    encontrado = true;
                     rta = dir;
+                    break;
                 }
                 else {
                     if(dir.sPhijo() != null) { pila.push(dir.sPhijo()); }
@@ -38,14 +37,14 @@ public class cArbolI {
         return rta;
     }
     
-    public boolean agregar(Object pPadre,Object pHijo) {
+    public boolean agregar1(Object pPadre,Object pHijo) {
         boolean rta = false;
         cNodoA dir = nodo(pPadre);
         
-        if (!estaVacio() && dir == null) {
-            aRaiz = new cNodoA(pHijo); rta = true;
-        }
-        else {
+        if (estaVacio() && dir == null) {
+            aRaiz = new cNodoA(pHijo); 
+            rta = true;
+        }else {
             if(dir != null) {
                 if(dir.sPhijo() == null) { dir.mPhijo(new cNodoA(pHijo)); rta = true; }
                 else {
@@ -57,6 +56,29 @@ public class cArbolI {
             }
         }
         return true;
+    }
+    
+    public boolean agregar(Object pPadre, Object pHijo) {
+        boolean rta = false;
+        if (estaVacio()) {
+            aRaiz = new cNodoA(pHijo);
+            rta = true;
+        } else {
+            cNodoA dir = nodo(pPadre);
+            if (dir != null) {
+                if (dir.sPhijo() == null) {
+                    dir.mPhijo(new cNodoA(pHijo));
+                } else {
+                    dir = dir.sPhijo();
+                    while (dir.sShermano() != null) {
+                        dir = dir.sShermano();
+                    }
+                    dir.mShermano(new cNodoA(pHijo));
+                }
+                rta = true;
+            }
+        }
+        return rta;
     }
     
     public boolean esPadre(Object pRaiz) {
@@ -111,7 +133,7 @@ public class cArbolI {
         return rta;
     }
     
-    public String recorrerNodos() {
+    public String recorrerNodos1() {
         String rta = "";
         if(!estaVacio()) {
             Stack<cNodoA> pila = new Stack<>();
@@ -119,7 +141,7 @@ public class cArbolI {
             cNodoA dir = null;
             while(!pila.isEmpty()) {
                 dir = pila.pop();
-                rta = rta + " " + dir.sElemento();
+                rta = rta + " " + dir;
                 if(dir.sPhijo() != null) {
                     pila.push(dir.sPhijo());
                 }
@@ -130,4 +152,35 @@ public class cArbolI {
         }
         return rta;
     }
+    
+    public String recorrerNodos() {
+        String rta = "";
+        if (!estaVacio()) {
+            Stack<cNodoA> pila = new Stack<>();
+            pila.push(aRaiz);
+            cNodoA dir = null;
+
+            while (!pila.isEmpty()) {
+                dir = pila.pop();
+                rta = rta + " " + dir.sElemento();  // Esto ahora usa toString() de cNodoA
+                if (dir.sPhijo() != null) {
+                    pila.push(dir.sPhijo());
+                }
+                if (dir.sShermano() != null) {
+                    pila.push(dir.sShermano());
+                }
+            }
+        }
+        return rta.trim();  // Elimina espacio al final
+    }
+    
+    public static void main(String[] args) {
+            cArbolI arbol = new cArbolI();
+            arbol.agregar(null, "A");       // Raíz
+            arbol.agregar("A", "B");
+            arbol.agregar("A", "C");
+            arbol.agregar("B", "D");
+
+            System.out.println("Nodos: " + arbol.recorrerNodos());
+        }
 }
