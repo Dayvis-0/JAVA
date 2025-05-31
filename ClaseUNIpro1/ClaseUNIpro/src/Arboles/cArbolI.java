@@ -20,7 +20,6 @@ public class cArbolI {
             pila.push(aRaiz);
             boolean encontrado = false;
             cNodoA dir = null;
-            
             while(!encontrado && !pila.isEmpty()) {
                 dir = pila.pop();
                 
@@ -90,17 +89,11 @@ public class cArbolI {
             while(!rta && !pila.isEmpty()) {
                 dir = pila.pop();
                 if(dir.sElemento().equals(pRaiz)) {
-                    if(dir.sPhijo() != null) {
-                        rta = true;
-                    }
+                    if(dir.sPhijo() != null) { rta = true; }
                 }
                 else {
-                    if(dir.sPhijo() != null) {
-                        pila.push(dir.sPhijo());
-                    }
-                    if(dir.sShermano() != null) {
-                        pila.push(dir.sShermano());
-                    }
+                    if(dir.sPhijo() != null) { pila.push(dir.sPhijo()); }
+                    if(dir.sShermano() != null) { pila.push(dir.sShermano()); }
                 }
             }
         }
@@ -116,17 +109,11 @@ public class cArbolI {
             while(!rta && !pila.isEmpty()) {    
                 dir = pila.pop();
                 if(dir.sElemento().equals(pRaiz)) {
-                    if(dir.sPhijo() == null) {
-                        rta = true;
-                    }
+                    if(dir.sPhijo() == null) { rta = true; }
                 }
                 else {
-                    if (dir.sPhijo() != null) {
-                        pila.push(dir.sPhijo());
-                    }
-                    if(dir.sShermano() != null) {
-                        pila.push(dir.sShermano());
-                    }
+                    if (dir.sPhijo() != null) { pila.push(dir.sPhijo()); }
+                    if(dir.sShermano() != null) { pila.push(dir.sShermano()); }
                 }
             }
         }
@@ -174,6 +161,51 @@ public class cArbolI {
         return rta.trim();  // Elimina espacio al final
     }
     
+    public int nodos() {
+        int rta = 0;
+        if(!estaVacio()) {
+            Stack<cNodoA> pila = new Stack<>();
+            pila.push(aRaiz);
+            cNodoA dir = null;
+            while(!pila.isEmpty()){
+                dir = pila.pop();
+                rta = rta + 1;
+                if(dir.sPhijo() != null) { pila.push(dir.sPhijo()); }
+                if(dir.sShermano()!= null) { pila.push(dir.sShermano()); }
+            }
+        }
+        return rta;
+    }
+    public int padres() {
+        int rta = 0;
+        if(!estaVacio()) {
+            Stack<cNodoA> pila = new Stack<>();
+            pila.push(aRaiz);
+            cNodoA dir = null;
+            while(!pila.isEmpty()) {
+                dir = pila.pop();
+                if(dir.sPhijo() != null) { rta = rta + 1; }
+                if(dir.sPhijo() != null) { pila.push(dir.sPhijo()); }
+                if(dir.sShermano() != null) { pila.push(dir.sShermano()); } 
+            }
+        }
+        return rta;
+    }
+    public int hijos() {
+        int rta = 0;
+        if(!estaVacio()) {
+            Stack<cNodoA> pila = new Stack<>();
+            pila.push(aRaiz);
+            cNodoA dir = null;
+            while(!pila.isEmpty()) {
+                dir = pila.pop();
+                if(dir.sPhijo() == null) { rta = rta + 1; } 
+                if(dir.sPhijo() != null) { pila.push(dir.sPhijo()); } 
+                if(dir.sShermano() != null) { pila.push(dir.sShermano()); } 
+            }
+        }
+        return rta;
+    }
     public static void main(String[] args) {
             cArbolI arbol = new cArbolI();
             arbol.agregar(null, "A");       // Raíz
@@ -182,5 +214,5 @@ public class cArbolI {
             arbol.agregar("B", "D");
 
             System.out.println("Nodos: " + arbol.recorrerNodos());
-        }
+    }
 }

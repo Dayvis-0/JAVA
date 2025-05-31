@@ -117,26 +117,25 @@
     <Component class="javax.swing.JComboBox" name="cb_metodo">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="19">
+          <StringArray count="18">
             <StringItem index="0" value="Esta vacio"/>
             <StringItem index="1" value="Nodo"/>
             <StringItem index="2" value="Recorre nodos"/>
-            <StringItem index="3" value="Contar nodos en clase"/>
-            <StringItem index="4" value="Contar nodos en aplicaci&#xf3;n"/>
-            <StringItem index="5" value="Es hijo"/>
-            <StringItem index="6" value="Es padre"/>
-            <StringItem index="7" value="Pre-orden"/>
-            <StringItem index="8" value="Padre (falta hacer)"/>
-            <StringItem index="9" value="In-orden"/>
-            <StringItem index="10" value="Pos-orden"/>
-            <StringItem index="11" value="Contar padres"/>
-            <StringItem index="12" value="Contar hijos"/>
-            <StringItem index="13" value="Existe"/>
-            <StringItem index="14" value="Altura"/>
-            <StringItem index="15" value="Nivel"/>
-            <StringItem index="16" value="Recorre padres"/>
-            <StringItem index="17" value="Recorre hijos"/>
-            <StringItem index="18" value="Mayor"/>
+            <StringItem index="3" value="Contar nodos"/>
+            <StringItem index="4" value="Es hijo"/>
+            <StringItem index="5" value="Es padre"/>
+            <StringItem index="6" value="Pre-orden"/>
+            <StringItem index="7" value="In-orden (tarea)"/>
+            <StringItem index="8" value="Pos-orden (tarea)"/>
+            <StringItem index="9" value="Padre (tarea)"/>
+            <StringItem index="10" value="Contar padres"/>
+            <StringItem index="11" value="Contar hijos"/>
+            <StringItem index="12" value="Existe"/>
+            <StringItem index="13" value="Altura"/>
+            <StringItem index="14" value="Nivel"/>
+            <StringItem index="15" value="Recorre padres"/>
+            <StringItem index="16" value="Recorre hijos"/>
+            <StringItem index="17" value="Mayor"/>
           </StringArray>
         </Property>
       </Properties>
