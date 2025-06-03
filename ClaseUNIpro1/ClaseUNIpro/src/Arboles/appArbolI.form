@@ -135,11 +135,21 @@
     <Component class="javax.swing.JComboBox" name="cb_operaciones">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="4">
+          <StringArray count="14">
             <StringItem index="0" value="Vacio?"/>
-            <StringItem index="1" value="Padre?"/>
-            <StringItem index="2" value="HIjo?"/>
-            <StringItem index="3" value="Nodos"/>
+            <StringItem index="1" value="Nodo"/>
+            <StringItem index="2" value="Padre?"/>
+            <StringItem index="3" value="HIjo?"/>
+            <StringItem index="4" value="Elementos"/>
+            <StringItem index="5" value="Nodos"/>
+            <StringItem index="6" value="Preorden"/>
+            <StringItem index="7" value="InOrden"/>
+            <StringItem index="8" value="PosOrden"/>
+            <StringItem index="9" value="Padres"/>
+            <StringItem index="10" value="Hijos"/>
+            <StringItem index="11" value="Existe"/>
+            <StringItem index="12" value="Recorrer Padres"/>
+            <StringItem index="13" value="Altura"/>
           </StringArray>
         </Property>
       </Properties>

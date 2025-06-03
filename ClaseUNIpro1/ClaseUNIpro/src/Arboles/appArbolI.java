@@ -42,7 +42,7 @@ public class appArbolI extends javax.swing.JFrame {
 
         bu_eliminar.setText("Eliminar");
 
-        cb_operaciones.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Vacio?", "Padre?", "HIjo?", "Nodos" }));
+        cb_operaciones.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Vacio?", "Nodo", "Padre?", "HIjo?", "Elementos", "Nodos", "Preorden", "InOrden", "PosOrden", "Padres", "Hijos", "Existe", "Recorrer Padres", "Altura" }));
 
         jButton4.setText("Ejecutar");
         jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -130,9 +130,19 @@ public class appArbolI extends javax.swing.JFrame {
         int opc = cb_operaciones.getSelectedIndex();
         switch (opc) {
             case 0: ta_rta.setText("Esta vacio? " + arbi1.estaVacio()); break;
-            case 1: ta_rta.setText("Es padre? " + arbi1.esPadre(tf_hijo.getText())); break;
-            case 2: ta_rta.setText("Es hijo? " + arbi1.esHijo(tf_hijo.getText())); break;
-            case 3: ta_rta.setText("Nodos:  " + arbi1.recorrerNodos()); break;
+            case 1: ta_rta.setText("Nodo: " + arbi1.nodo(tf_hijo.getText())); break;
+            case 2: ta_rta.setText("Es padre? " + arbi1.esPadre(tf_hijo.getText())); break;
+            case 3: ta_rta.setText("Es hijo? " + arbi1.esHijo(tf_hijo.getText())); break;
+            case 4: ta_rta.setText("Elementos:  " + arbi1.recorrerNodos()); break;
+            case 5: ta_rta.setText("Total nodos:  " + arbi1.nodos()); break;
+            case 6: ta_rta.setText("Pre-orden:  " + arbi1.preOrden()); break;
+            case 7: ta_rta.setText("In-orden:  " + arbi1.preOrden()); break;
+            case 8: ta_rta.setText("Pos-orden:  " + arbi1.preOrden()); break;
+            case 9: ta_rta.setText("Padres:  " + arbi1.padres()); break;
+            case 10: ta_rta.setText("Hijos:  " + arbi1.hijos()); break;
+            case 11: ta_rta.setText("Existe:  " + arbi1.existe(tf_hijo.getText())); break;
+            case 12: ta_rta.setText("Recorrer padres:  " + arbi1.recorrerPadres()); break;
+            case 13: ta_rta.setText("Altura:  " + arbi1.altura()); break;
         }
     }//GEN-LAST:event_jButton4MouseClicked
 

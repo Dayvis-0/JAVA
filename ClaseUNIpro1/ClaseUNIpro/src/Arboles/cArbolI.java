@@ -36,45 +36,23 @@ public class cArbolI {
         return rta;
     }
     
-    public boolean agregar1(Object pPadre,Object pHijo) {
-        boolean rta = false;
-        cNodoA dir = nodo(pPadre);
-        
-        if (estaVacio() && dir == null) {
-            aRaiz = new cNodoA(pHijo); 
-            rta = true;
-        }else {
-            if(dir != null) {
-                if(dir.sPhijo() == null) { dir.mPhijo(new cNodoA(pHijo)); rta = true; }
-                else {
-                    dir = dir.sPhijo();
-                    while(dir.sShermano() != null) { dir = dir.sShermano(); }
-                    dir.mShermano(new cNodoA(pHijo));
-                    rta = true;
-                }
-            }
-        }
-        return true;
-    }
-    
     public boolean agregar(Object pPadre, Object pHijo) {
         boolean rta = false;
-        if (estaVacio()) {
-            aRaiz = new cNodoA(pHijo);
-            rta = true;
-        } else {
-            cNodoA dir = nodo(pPadre);
+        cNodoA dir = nodo(pPadre);
+        if (estaVacio()) { aRaiz = new cNodoA(pHijo); rta = true; } 
+        else {
             if (dir != null) {
                 if (dir.sPhijo() == null) {
                     dir.mPhijo(new cNodoA(pHijo));
+                    rta = true;
                 } else {
                     dir = dir.sPhijo();
                     while (dir.sShermano() != null) {
                         dir = dir.sShermano();
                     }
                     dir.mShermano(new cNodoA(pHijo));
+                    rta = true;
                 }
-                rta = true;
             }
         }
         return rta;
@@ -119,46 +97,21 @@ public class cArbolI {
         }
         return rta;
     }
-    
-    public String recorrerNodos1() {
-        String rta = "";
-        if(!estaVacio()) {
-            Stack<cNodoA> pila = new Stack<>();
-            pila.push(aRaiz);
-            cNodoA dir = null;
-            while(!pila.isEmpty()) {
-                dir = pila.pop();
-                rta = rta + " " + dir;
-                if(dir.sPhijo() != null) {
-                    pila.push(dir.sPhijo());
-                }
-                if(dir.sShermano() != null) {
-                    pila.push(dir.sShermano());
-                }
-            }
-        }
-        return rta;
-    }
-    
+ 
     public String recorrerNodos() {
         String rta = "";
         if (!estaVacio()) {
             Stack<cNodoA> pila = new Stack<>();
             pila.push(aRaiz);
             cNodoA dir = null;
-
             while (!pila.isEmpty()) {
                 dir = pila.pop();
                 rta = rta + " " + dir.sElemento();  // Esto ahora usa toString() de cNodoA
-                if (dir.sPhijo() != null) {
-                    pila.push(dir.sPhijo());
-                }
-                if (dir.sShermano() != null) {
-                    pila.push(dir.sShermano());
-                }
+                if (dir.sPhijo() != null) { pila.push(dir.sPhijo()); }
+                if (dir.sShermano() != null) { pila.push(dir.sShermano()); }
             }
         }
-        return rta.trim();  // Elimina espacio al final
+        return rta;  // Elimina espacio al final
     }
     
     public int nodos() {
@@ -206,13 +159,115 @@ public class cArbolI {
         }
         return rta;
     }
-    public static void main(String[] args) {
-            cArbolI arbol = new cArbolI();
-            arbol.agregar(null, "A");       // Raíz
-            arbol.agregar("A", "B");
-            arbol.agregar("A", "C");
-            arbol.agregar("B", "D");
-
-            System.out.println("Nodos: " + arbol.recorrerNodos());
+    
+    public String preOrden() {
+        String rta = "";
+        if(!estaVacio()) {
+            Stack<cNodoA> pila = new Stack<>();
+            pila.push(aRaiz);
+            cNodoA dir = null;
+            while(!pila.isEmpty()) {
+                dir = pila.pop();
+                rta = rta + dir.sElemento() + " ";
+                if(dir.sShermano() != null) { pila.push(dir.sShermano());}
+                if(dir.sPhijo()!= null) { pila.push(dir.sPhijo());}
+            }
+        }
+        return rta;
     }
+    public String inOrden() {
+        String rta = "";
+        if(!estaVacio()) {
+            Stack<cNodoA> pila = new Stack<>();
+            pila.push(aRaiz);
+            cNodoA dir = null;
+            while(!pila.isEmpty()) {
+                dir = pila.pop();
+                if(dir.sPhijo() != null){ 
+                    pila.push(dir.sShermano());
+                }
+                rta = rta + dir.sElemento() + "";
+                if(dir.sPhijo() != null) {
+                    pila.push(dir.sPhijo());
+                }
+            }
+        }
+        return rta;
+    }
+    
+    public String postOrden() {
+        String rta = "";
+        
+        return rta;
+    }
+    public boolean existe(Object pRaiz) {
+        boolean rta = false;
+        if(!estaVacio()){
+            Stack<cNodoA> pila = new Stack<>();
+            pila.push(aRaiz);
+            cNodoA dir = null;
+            while(!rta && !pila.isEmpty()){
+                dir = pila.pop();
+                if(dir.sElemento().equals(pRaiz)) { rta = true; }
+                else {
+                    if(dir.sPhijo() != null) { pila.push(dir.sPhijo()); }
+                    if(dir.sShermano()!= null) { pila.push(dir.sShermano()); }
+                }
+            }
+        }
+        return rta;
+    }
+    public String recorrerPadres() {
+        String rta = "";
+        if(!estaVacio()) {
+            Stack<cNodoA> pila = new Stack<>();
+            pila.push(aRaiz);
+            cNodoA dir = null;
+            while(!pila.isEmpty()){
+                dir = pila.pop();
+                if(dir.sPhijo() != null) {
+                    rta = rta + " " + dir.sElemento();
+                    pila.push(dir.sPhijo());
+                }
+                if(dir.sShermano() != null) { pila.push(dir.sShermano()); }
+            }
+        }
+        return rta;
+    }
+    public String recorrerHijos() {
+        String rta = "";
+        if(!estaVacio()) {
+            
+        }
+        return rta;
+    }
+    public int altura() {
+        int rta = 0;
+        if(!estaVacio()) {
+            Stack<cNodoA> pila = new Stack<>();
+            pila.push(aRaiz);
+            cNodoA dir = null;
+            while(!pila.isEmpty()) {
+                dir = pila.pop();
+                if(dir.sPhijo() != null) { rta = rta + 1; pila.push(dir.sPhijo()); }
+                if(dir.sShermano() != null) { pila.push(dir.sShermano()); }
+            }
+        }
+        return rta;
+    }
+    public int nivel(Object pRaiz) {
+        int nivel = 0, rta = -1;
+        if(!estaVacio()) {
+            Stack<cNodoA> pila = new Stack<>();
+            pila.push(aRaiz);
+            cNodoA dir = null;
+            while(rta == -1 && !pila.isEmpty()){
+                dir = pila.pop();
+                if(dir.sPhijo()!= null) { pila.push(dir.sPhijo()); nivel = nivel + 1; }
+                if(dir.sShermano()!= null) { pila.push(dir.sShermano()); }
+            }
+        }
+        return rta;
+    }
+    
 }
