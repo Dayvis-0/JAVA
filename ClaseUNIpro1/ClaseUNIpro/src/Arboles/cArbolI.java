@@ -182,12 +182,12 @@ public class cArbolI {
             pila.push(aRaiz);
             cNodoA dir = null;
             while(!pila.isEmpty()) {
-                dir = pila.pop();
                 if(dir.sPhijo() != null){ 
-                    pila.push(dir.sShermano());
+                    pila.push(dir.sPhijo());
                 }
-                rta = rta + dir.sElemento() + "";
-                if(dir.sPhijo() != null) {
+                dir = pila.pop();
+                rta = rta + dir.sElemento() + " ";
+                if(dir.sShermano() != null) {
                     pila.push(dir.sPhijo());
                 }
             }

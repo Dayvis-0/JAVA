@@ -117,7 +117,6 @@ public class cArbolI {
             }
         }return rta;
     }
-    public String inOrden(){ String rta= ""; return rta; }
     public String posOrden(){ String rta= ""; return rta; }
     public cNodoA padre(Object pHijo){ cNodoA rta= null; return rta; }
     public int padres(){

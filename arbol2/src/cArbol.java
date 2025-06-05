@@ -228,4 +228,31 @@ public class cArbol {
             if(aux.compareTo(rta)>0){ rta= aux; }
         }return rta;
     }
+    
+    private int primeHijos() {
+        int rta = 0;
+        if(!estaVacio()) {
+            if(aPhijo != null) { rta = rta + 1 + aPhijo.primeHijos(); }
+            if(aShermano != null) { rta = rta + aShermano.primeHijos(); }
+        }
+        return rta;
+    }
+    
+    private int ultimosHijos() {
+        int rta = 0;
+        if(!estaVacio()){
+            if(aShermano != null && aShermano.sShermano() == null) { rta = 1; }
+            if(aPhijo != null) {
+                rta = rta + aPhijo.ultimosHijos();
+            }
+            if(aShermano != null) {
+                rta = rta + aShermano.ultimosHijos();
+            }
+        }
+        return rta;
+    }
+    
+    public boolean esEqui() {
+        return (primeHijos() == ultimosHijos());
+    }
 }
