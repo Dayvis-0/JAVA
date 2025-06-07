@@ -1,4 +1,4 @@
-package Arboles;
+package ArbolIterativo;
 
 public class appArbolI extends javax.swing.JFrame {
 
@@ -42,7 +42,7 @@ public class appArbolI extends javax.swing.JFrame {
 
         bu_eliminar.setText("Eliminar");
 
-        cb_operaciones.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Vacio?", "Nodo", "Padre?", "HIjo?", "Elementos", "Nodos", "Padres", "Hijos", "Existe", "Recorrer Padres", "Altura", "Nodo menos hijos", "Nodo mas hijos" }));
+        cb_operaciones.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Vacio?", "Nodo", "Padre?", "HIjo?", "Elementos", "Nodos", "Preorden", "InOrden", "PosOrden", "Padres", "Hijos", "Existe", "Recorrer Padres", "Altura", "Nodo Menos Hijo", "Nodo Mas Hijos", "Recorrer Hijos", "Recorrer Hermanos", "Recorrer Hijos Unicos" }));
 
         jButton4.setText("Ejecutar");
         jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -75,45 +75,44 @@ public class appArbolI extends javax.swing.JFrame {
                     .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
+                        .addGap(12, 12, 12)
+                        .addComponent(bu_agregar, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(17, 17, 17)
+                        .addComponent(bu_modificar, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(bu_eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(bu_agregar, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(bu_modificar, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(53, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(10, 10, 10)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(bu_agregar)
-                        .addGap(18, 18, 18)
-                        .addComponent(bu_modificar))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel1)
-                                    .addComponent(tf_padre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(tf_padre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
                                 .addGap(25, 25, 25)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel2)
-                                    .addComponent(tf_hijo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
+                                    .addComponent(tf_hijo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(5, 5, 5)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(cb_operaciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(bu_modificar)
+                                    .addComponent(bu_agregar)
                                     .addComponent(bu_eliminar))))
                         .addGap(18, 18, 18)
+                        .addComponent(cb_operaciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addComponent(jButton4)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         pack();
@@ -136,13 +135,19 @@ public class appArbolI extends javax.swing.JFrame {
             case 3: ta_rta.setText("Es hijo? " + arbi1.esHijo(tf_hijo.getText())); break;
             case 4: ta_rta.setText("Elementos:  " + arbi1.recorrerNodos()); break;
             case 5: ta_rta.setText("Total nodos:  " + arbi1.nodos()); break;
-            case 6: ta_rta.setText("Padres:  " + arbi1.padres()); break;
-            case 7: ta_rta.setText("Hijos:  " + arbi1.hijos()); break;
-            case 8: ta_rta.setText("Existe:  " + arbi1.existe(tf_hijo.getText())); break;
-            case 9: ta_rta.setText("Recorrer padres:  " + arbi1.recorrerPadres()); break;
-            case 10: ta_rta.setText("Altura:  " + arbi1.altura()); break;
-            case 11: ta_rta.setText("Contar nodos menos hijos:  " + arbi1.nodoConMasHijos()); break;
-            case 12: ta_rta.setText("Contar nodos mas hijos:  " + arbi1.nodoConMenosHijos()); break;
+            case 6: ta_rta.setText("Pre-orden:  " + arbi1.preOrden()); break;
+            case 7: ta_rta.setText("In-orden:  " + arbi1.preOrden()); break;
+            case 8: ta_rta.setText("Pos-orden:  " + arbi1.preOrden()); break;
+            case 9: ta_rta.setText("Padres:  " + arbi1.padres()); break;
+            case 10: ta_rta.setText("Hijos:  " + arbi1.hijos()); break;
+            case 11: ta_rta.setText("Existe:  " + arbi1.existe(tf_hijo.getText())); break;
+            case 12: ta_rta.setText("Recorrer padres:  " + arbi1.recorrerPadres()); break;
+            case 13: ta_rta.setText("Altura:  " + arbi1.altura()); break;
+            case 14: ta_rta.setText("Nodo menos hijos:  " + arbi1.nodoMenosHijos()); break;
+            case 15: ta_rta.setText("Nodo mas hijos:  " + arbi1.nodoMasHijos()); break;
+            case 16: ta_rta.setText("Recorrer hijos:  " + arbi1.recorrerHijos()); break;
+            case 17: ta_rta.setText("Recorrer hermanos:  " + arbi1.recorreHermanos()); break;
+            case 18: ta_rta.setText("Recorrer hijos unicos:  " + arbi1.recorreHijoUnico()); break;
         }
     }//GEN-LAST:event_jButton4MouseClicked
 
@@ -170,6 +175,7 @@ public class appArbolI extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(appArbolI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -177,6 +183,7 @@ public class appArbolI extends javax.swing.JFrame {
                 appArbolI ar1 = new appArbolI();
                 
                 ar1.setVisible(true);
+                ar1.setLocationRelativeTo(null);
             }
         });
     }
