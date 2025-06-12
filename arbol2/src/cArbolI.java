@@ -26,6 +26,7 @@ public class cArbolI {
             }
         }return rta;
     }
+    // Prueba
     public boolean agregar(Object pPadre, Object pHijo){
         boolean rta= false;
         cNodoA dir= nodo(pPadre);
