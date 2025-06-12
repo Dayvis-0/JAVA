@@ -70,6 +70,7 @@ public class cArbolB {
                     cArbolB dir = aSubArbolIzq.maximo();
                     aRaiz = dir.sRaiz();
                     aSubArbolIzq.eliminar(aRaiz);
+
                 } else if (aSubArbolIzq != null) {
                     aRaiz = aSubArbolIzq.sRaiz(); 
                     aSubArbolDer = aSubArbolIzq.sSubArbolDer();
@@ -100,27 +101,6 @@ public class cArbolB {
             rta = aRaiz + " ";
             if(aSubArbolIzq != null) { rta = rta + aSubArbolIzq.elementos(); }
             if(aSubArbolDer != null) { rta = rta + aSubArbolDer.elementos(); }
-        }
-        return rta;
-    }
-    public cArbolB arbol(Object pRaiz){
-        cArbolB rta = null;
-        if(!estaVacio()) {
-            if(pRaiz.toString().compareTo(aRaiz.toString()) < 0) {
-                if(aSubArbolIzq != null) {
-                    rta = aSubArbolIzq.arbol(pRaiz);
-                }
-            }
-            else {
-                if(pRaiz.toString().compareTo(aRaiz.toString()) < 0) {
-                    if(aSubArbolIzq != null) {
-                        rta = aSubArbolIzq.arbol(pRaiz);    
-                    }
-                }
-                else if (aSubArbolDer != null) {
-                    rta = aSubArbolDer.arbol(pRaiz);
-                }
-            }
         }
         return rta;
     }
