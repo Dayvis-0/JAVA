@@ -104,4 +104,46 @@ public class cArbolB {
         }
         return rta;
     }
+    public cArbolB arbol(Object pRaiz){
+        cArbolB rta = null;
+        if(!estaVacio()) {
+            if(pRaiz.equals(aRaiz)){
+                rta = this;
+            } else {
+                if(pRaiz.toString().compareTo(aRaiz.toString()) < 0) {
+                    if(aSubArbolIzq != null) { rta = aSubArbolIzq.arbol(pRaiz); }
+                }
+                else if (aSubArbolDer != null) { rta = aSubArbolDer.arbol(pRaiz); }
+            }
+        }
+        return rta;
+    }
+    public String preOrden() {
+        String rta = "";
+        if(!estaVacio()){
+            rta = aRaiz + " ";
+            if(aSubArbolIzq != null) { rta = rta + aSubArbolIzq.preOrden(); }
+            if(aSubArbolDer != null) { rta = rta + aSubArbolDer.preOrden(); }
+        }
+        return rta;
+    }  
+    public String inOrden() {
+        String rta = "";
+        if(!estaVacio()){
+            if(aSubArbolIzq != null) { rta = aSubArbolIzq.inOrden(); }
+            rta = rta  + " " + aRaiz;
+            if(aSubArbolDer != null) { rta = rta + aSubArbolDer.inOrden(); }
+        }
+        return rta;
+    }  
+    public String posOrden() {
+        String rta = "";
+        if(!estaVacio()){
+            if(aSubArbolIzq != null) { rta = aSubArbolIzq.inOrden(); }
+            if(aSubArbolDer != null) { rta = rta + aSubArbolDer.inOrden(); }
+            rta = rta + " " + aRaiz;
+        }
+        return rta;
+    }  
+    
 }

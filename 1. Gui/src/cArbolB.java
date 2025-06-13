@@ -124,4 +124,13 @@ public class cArbolB {
         }
         return rta;
     }
+    public String preOrden() {
+        String rta = "";
+        if(!estaVacio()){
+            rta = aRaiz + " ";
+            if(aSubArbolIzq != null) { rta = rta + aSubArbolIzq.preOrden(); }
+            if(aSubArbolDer != null) { rta = rta + aSubArbolDer.preOrden(); }
+        }
+        return rta;
+    }   
 }
