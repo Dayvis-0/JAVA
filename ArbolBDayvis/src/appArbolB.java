@@ -45,7 +45,7 @@ public class appArbolB extends javax.swing.JFrame {
             }
         });
 
-        cb_opciones.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Maximo", "Minimo", "Arbol", "Pre-Orden", "In-Orden", "Pos-Orden", "Existe arbol?", "Es hoja?", "Es padre?", "Elementos" }));
+        cb_opciones.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Vacio?", "Maximo", "Minimo", "Arbol", "Pre-Orden", "In-Orden", "Pos-Orden", "Existe arbol?", "Es hoja?", "Es padre?", "Elementos" }));
 
         bu_ejecutar.setText("Ejecutar");
         bu_ejecutar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -126,16 +126,17 @@ public class appArbolB extends javax.swing.JFrame {
         int opc = cb_opciones.getSelectedIndex();
         
         switch(opc) {
-            case 0: ta_rta.setText("Maximo: " + (arbb1.maximo() != null ? arbb1.maximo().sRaiz(): ""));break;
-            case 1: ta_rta.setText("Minimo: " + (arbb1.minimo() != null ? arbb1.minimo().sRaiz(): ""));break;
-            case 2: ta_rta.setText("Arbol: " + arbb1.arbol(tf_nodo.getText())); break;
-            case 3: ta_rta.setText("Pre-Orden: " + arbb1.preOrden()); break;
-            case 4: ta_rta.setText("In-Orden: " + arbb1.inOrden()); break;
-            case 5: ta_rta.setText("Pos-Orden: " + arbb1.posOrden()); break;
-            case 6: ta_rta.setText("Existe arbol: " + arbb1.preOrden()); break;
-            case 7: ta_rta.setText("Es hoja?: " + arbb1.preOrden()); break;
-            case 8: ta_rta.setText("Es padre?: " + arbb1.preOrden()); break;
-            case 9: ta_rta.setText("Elementos: " + arbb1.elementos()); break;
+            case 0: ta_rta.setText("Vacio: " + arbb1.estaVacio());break;
+            case 1: ta_rta.setText("Maximo: " + (arbb1.maximo() != null ? arbb1.maximo().sRaiz(): ""));break;
+            case 2: ta_rta.setText("Minimo: " + (arbb1.minimo() != null ? arbb1.minimo().sRaiz(): ""));break;
+            case 3: ta_rta.setText("Arbol: " + arbb1.arbol(tf_nodo.getText())); break;
+            case 4: ta_rta.setText("Pre-Orden: " + arbb1.preOrden()); break;
+            case 5: ta_rta.setText("In-Orden: " + arbb1.inOrden()); break;
+            case 6: ta_rta.setText("Pos-Orden: " + arbb1.posOrden()); break;
+            case 7: ta_rta.setText("Existe arbol: " + !(arbb1.estaVacio())); break;
+            case 8: ta_rta.setText("Es hoja?: " + arbb1.esHoja(tf_nodo.getText())); break;
+            case 9: ta_rta.setText("Es padre?: " + arbb1.esPadre(tf_nodo.getText())); break;
+            case 10: ta_rta.setText("Elementos: " + arbb1.elementos()); break;
         }
     }//GEN-LAST:event_bu_ejecutarMouseClicked
 

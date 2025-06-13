@@ -109,7 +109,7 @@ public class cArbolB {
         if(!estaVacio()) {
             if(pRaiz.equals(aRaiz)){
                 rta = this;
-            } else {
+            } else { 
                 if(pRaiz.toString().compareTo(aRaiz.toString()) < 0) {
                     if(aSubArbolIzq != null) { rta = aSubArbolIzq.arbol(pRaiz); }
                 }
@@ -139,11 +139,38 @@ public class cArbolB {
     public String posOrden() {
         String rta = "";
         if(!estaVacio()){
-            if(aSubArbolIzq != null) { rta = aSubArbolIzq.inOrden(); }
-            if(aSubArbolDer != null) { rta = rta + aSubArbolDer.inOrden(); }
-            rta = rta + " " + aRaiz;
+            if(aSubArbolIzq != null) { rta = rta + aSubArbolIzq.posOrden(); }
+            if(aSubArbolDer != null) { rta = rta + aSubArbolDer.posOrden(); }
+            rta = rta + aRaiz + " ";
         }
         return rta;
     }  
-    
+    public boolean esPadre(Object pRaiz) {
+        boolean rta = false;
+        if(!estaVacio()) {
+            if(aRaiz.equals(pRaiz)){
+                if((aSubArbolIzq != null && !aSubArbolIzq.estaVacio()) || (aSubArbolDer != null && !aSubArbolDer.estaVacio())) {
+                    rta = true;
+                }
+            } else {
+                if(aSubArbolIzq != null) { rta = aSubArbolIzq.esPadre(pRaiz); }
+                if(!rta && aSubArbolDer != null ) { rta = aSubArbolDer.esPadre(pRaiz); }
+            }
+        }
+        return rta;
+    }
+    public boolean esHoja(Object pRaiz) {
+        boolean rta = false;
+        if(!estaVacio()) {
+            if(aRaiz.equals(pRaiz)){
+                if(aSubArbolIzq == null && aSubArbolDer == null) {
+                    rta = true;
+                }
+            } else {
+                if(aSubArbolIzq != null) { rta = aSubArbolIzq.esHoja(pRaiz); }
+                if(!rta && aSubArbolDer != null) { rta = aSubArbolDer.esHoja(pRaiz); }
+            }
+        }
+        return rta;
+    }
 }
