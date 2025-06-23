@@ -173,4 +173,54 @@ public class cArbolB {
         }
         return rta;
     }
+    public int altura() {
+        int altIzq = 0, altDer = 0;
+        if(!estaVacio()) {
+            if(aSubArbolIzq != null) { altIzq = 1 + aSubArbolIzq.altura(); }
+            if(aSubArbolDer != null) { altDer = 1 + aSubArbolDer.altura(); }
+        }return (altIzq > altDer ? altIzq : altDer);
+    }
+    public int nivel (Object pRaiz, int pNivel) {
+        int rta = -1;
+        if(!estaVacio()) {
+            if(aRaiz.toString().compareTo(aRaiz.toString()) < 0) {
+                if(aSubArbolIzq != null) {
+                    rta = aSubArbolIzq.nivel(pRaiz, pNivel + 1);
+                }
+            } else {
+                if(aSubArbolDer != null) {
+                    rta = aSubArbolDer.nivel(pRaiz, pNivel + 1);
+                }
+            }
+        }
+        return rta;
+    }
+    public String recorrerPadre() {
+        String rta = "";
+        if(!estaVacio()) {
+            if(aSubArbolIzq != null || aSubArbolDer != null) {
+                rta = aRaiz + " ";
+            }
+            if(aSubArbolIzq != null) { rta = rta + aSubArbolIzq.recorrerPadre();
+            }
+            if(aSubArbolDer != null) { rta = rta + aSubArbolDer.recorrerPadre(); }
+        }
+        return rta; 
+    }
+    public String recorrerHoja() {
+        String rta = "";
+        if(!estaVacio()) {
+            if(aSubArbolIzq == null && aSubArbolDer == null) {
+                rta = aRaiz + " ";
+            }
+            else {
+                if(aSubArbolIzq != null) {
+                    rta = aSubArbolIzq.recorrerHoja();
+                }
+                if(aSubArbolDer != null) {
+                    rta = aSubArbolDer.recorrerHoja();
+                }
+            }
+        } return rta; 
+    }
 }
