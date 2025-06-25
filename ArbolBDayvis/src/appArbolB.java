@@ -45,7 +45,7 @@ public class appArbolB extends javax.swing.JFrame {
             }
         });
 
-        cb_opciones.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Vacio?", "Maximo", "Minimo", "Arbol", "Pre-Orden", "In-Orden", "Pos-Orden", "Existe arbol?", "Es hoja?", "Es padre?", "Elementos" }));
+        cb_opciones.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Vacio?", "Maximo", "Minimo", "Arbol", "Pre-Orden", "In-Orden", "Pos-Orden", "Existe arbol?", "Es hoja?", "Es padre?", "Altura", "Nivel", "RecorrerPadre", "RecorrerHoja", "Padres", "Hojas", "Elementos" }));
 
         bu_ejecutar.setText("Ejecutar");
         bu_ejecutar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -133,10 +133,16 @@ public class appArbolB extends javax.swing.JFrame {
             case 4: ta_rta.setText("Pre-Orden: " + arbb1.preOrden()); break;
             case 5: ta_rta.setText("In-Orden: " + arbb1.inOrden()); break;
             case 6: ta_rta.setText("Pos-Orden: " + arbb1.posOrden()); break;
-            case 7: ta_rta.setText("Existe arbol: " + !(arbb1.estaVacio())); break;
+            case 7: ta_rta.setText("Existe arbol: " + arbb1.existe(tf_nodo.getText())); break;
             case 8: ta_rta.setText("Es hoja?: " + arbb1.esHoja(tf_nodo.getText())); break;
             case 9: ta_rta.setText("Es padre?: " + arbb1.esPadre(tf_nodo.getText())); break;
-            case 10: ta_rta.setText("Elementos: " + arbb1.elementos()); break;
+            case 10: ta_rta.setText("Altura: " + arbb1.altura()); break;
+            case 11: ta_rta.setText("Nivel: " + arbb1.nivel(tf_nodo.getText(), 0)); break;
+            case 12: ta_rta.setText("Recorrer padres: " + arbb1.recorrerPadre()); break;
+            case 13: ta_rta.setText("Recorrer hojas: " + arbb1.recorrerHoja()); break;
+            case 14: ta_rta.setText("Padres: " + arbb1.padres()); break;
+            case 15: ta_rta.setText("Hojas: " + arbb1.hojas()); break;
+            case 16: ta_rta.setText("Elementos: " + arbb1.elementos()); break;
         }
     }//GEN-LAST:event_bu_ejecutarMouseClicked
 

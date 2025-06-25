@@ -36,16 +36,14 @@ public class cArbolB {
         if(!estaVacio()) {
             if(aSubArbolDer == null) { rta = this; }
             else { rta = aSubArbolDer.maximo(); }
-        }
-        return rta;
+        } return rta;
     }
     public cArbolB minimo() {
         cArbolB rta = null;
         if(!estaVacio()) {
             if(aSubArbolIzq == null) { rta = this; }
             else { rta = aSubArbolIzq.minimo(); }
-        }
-        return rta;
+        } return rta;
     }
     private void limpiar() {
         if(!estaVacio()) {
@@ -92,8 +90,7 @@ public class cArbolB {
             if(rta) {
                 limpiar();
             }
-        }
-        return rta;
+        } return rta;
     }
     public String elementos() {
         String rta = "";
@@ -101,8 +98,7 @@ public class cArbolB {
             rta = aRaiz + " ";
             if(aSubArbolIzq != null) { rta = rta + aSubArbolIzq.elementos(); }
             if(aSubArbolDer != null) { rta = rta + aSubArbolDer.elementos(); }
-        }
-        return rta;
+        } return rta;
     }
     public cArbolB arbol(Object pRaiz){
         cArbolB rta = null;
@@ -115,8 +111,21 @@ public class cArbolB {
                 }
                 else if (aSubArbolDer != null) { rta = aSubArbolDer.arbol(pRaiz); }
             }
-        }
-        return rta;
+        } return rta;
+    }
+    public boolean existe(Object pRaiz) {
+        boolean rta = false;
+        if(!estaVacio()) {
+            if(pRaiz.equals(aRaiz)){ rta = true; }
+            else {
+                if(pRaiz.toString().compareTo(aRaiz.toString()) < 0) {
+                    if(aSubArbolIzq != null){ rta = aSubArbolIzq.existe(pRaiz); }
+                }
+                else {
+                    if(aSubArbolDer != null){ rta = aSubArbolDer.existe(pRaiz); }
+                }
+            }
+        } return rta;
     }
     public String preOrden() {
         String rta = "";
@@ -124,8 +133,7 @@ public class cArbolB {
             rta = aRaiz + " ";
             if(aSubArbolIzq != null) { rta = rta + aSubArbolIzq.preOrden(); }
             if(aSubArbolDer != null) { rta = rta + aSubArbolDer.preOrden(); }
-        }
-        return rta;
+        } return rta;
     }  
     public String inOrden() {
         String rta = "";
@@ -133,8 +141,7 @@ public class cArbolB {
             if(aSubArbolIzq != null) { rta = aSubArbolIzq.inOrden(); }
             rta = rta  + " " + aRaiz;
             if(aSubArbolDer != null) { rta = rta + aSubArbolDer.inOrden(); }
-        }
-        return rta;
+        } return rta;
     }  
     public String posOrden() {
         String rta = "";
@@ -142,36 +149,32 @@ public class cArbolB {
             if(aSubArbolIzq != null) { rta = rta + aSubArbolIzq.posOrden(); }
             if(aSubArbolDer != null) { rta = rta + aSubArbolDer.posOrden(); }
             rta = rta + aRaiz + " ";
-        }
-        return rta;
+        } return rta;
     }  
     public boolean esPadre(Object pRaiz) {
         boolean rta = false;
         if(!estaVacio()) {
             if(aRaiz.equals(pRaiz)){
-                if((aSubArbolIzq != null && !aSubArbolIzq.estaVacio()) || (aSubArbolDer != null && !aSubArbolDer.estaVacio())) {
+                if(aSubArbolIzq != null ||aSubArbolDer != null) {
                     rta = true;
                 }
             } else {
-                if(aSubArbolIzq != null) { rta = aSubArbolIzq.esPadre(pRaiz); }
-                if(!rta && aSubArbolDer != null ) { rta = aSubArbolDer.esPadre(pRaiz); }
+                if(pRaiz.toString().compareTo(aRaiz.toString()) < 0) {
+                    if(aSubArbolIzq != null) { rta = aSubArbolIzq.esPadre(pRaiz); }         
+                }else if(!rta && aSubArbolDer != null ) { rta = aSubArbolDer.esPadre(pRaiz); }
             }
-        }
-        return rta;
+        } return rta;
     }
     public boolean esHoja(Object pRaiz) {
         boolean rta = false;
         if(!estaVacio()) {
             if(aRaiz.equals(pRaiz)){
-                if(aSubArbolIzq == null && aSubArbolDer == null) {
-                    rta = true;
-                }
+                if(aSubArbolIzq == null && aSubArbolDer == null) { rta = true; }
             } else {
                 if(aSubArbolIzq != null) { rta = aSubArbolIzq.esHoja(pRaiz); }
                 if(!rta && aSubArbolDer != null) { rta = aSubArbolDer.esHoja(pRaiz); }
             }
-        }
-        return rta;
+        } return rta;
     }
     public int altura() {
         int altIzq = 0, altDer = 0;
@@ -183,26 +186,21 @@ public class cArbolB {
     public int nivel (Object pRaiz, int pNivel) {
         int rta = -1;
         if(!estaVacio()) {
-            if(aRaiz.toString().compareTo(aRaiz.toString()) < 0) {
-                if(aSubArbolIzq != null) {
-                    rta = aSubArbolIzq.nivel(pRaiz, pNivel + 1);
-                }
-            } else {
-                if(aSubArbolDer != null) {
-                    rta = aSubArbolDer.nivel(pRaiz, pNivel + 1);
-                }
+            if(aRaiz.equals(pRaiz)) { rta = pNivel; }
+            else {
+                if(pRaiz.toString().compareTo(aRaiz.toString()) < 0) {
+                    if(aSubArbolIzq != null) { rta = aSubArbolIzq.nivel(pRaiz, pNivel + 1); }
+                } else {
+                    if(aSubArbolDer != null) { rta = aSubArbolDer.nivel(pRaiz, pNivel + 1); }
+                }    
             }
-        }
-        return rta;
+        } return rta;
     }
     public String recorrerPadre() {
         String rta = "";
         if(!estaVacio()) {
-            if(aSubArbolIzq != null || aSubArbolDer != null) {
-                rta = aRaiz + " ";
-            }
-            if(aSubArbolIzq != null) { rta = rta + aSubArbolIzq.recorrerPadre();
-            }
+            if(aSubArbolIzq != null || aSubArbolDer != null) { rta = aRaiz + " "; }
+            if(aSubArbolIzq != null) { rta = rta + aSubArbolIzq.recorrerPadre(); }
             if(aSubArbolDer != null) { rta = rta + aSubArbolDer.recorrerPadre(); }
         }
         return rta; 
@@ -210,17 +208,27 @@ public class cArbolB {
     public String recorrerHoja() {
         String rta = "";
         if(!estaVacio()) {
-            if(aSubArbolIzq == null && aSubArbolDer == null) {
-                rta = aRaiz + " ";
-            }
+            if(aSubArbolIzq == null && aSubArbolDer == null) { rta = aRaiz + " "; }
             else {
-                if(aSubArbolIzq != null) {
-                    rta = aSubArbolIzq.recorrerHoja();
-                }
-                if(aSubArbolDer != null) {
-                    rta = aSubArbolDer.recorrerHoja();
-                }
+                if(aSubArbolIzq != null) { rta = aSubArbolIzq.recorrerHoja(); }
+                if(aSubArbolDer != null) { rta = aSubArbolDer.recorrerHoja(); }
             }
         } return rta; 
     }
+    public int padres() {
+        int rta = 0;
+        if(!estaVacio()) {
+            if(aSubArbolIzq != null || aSubArbolDer != null) { rta = 1; }
+            if(aSubArbolIzq != null ) { rta = rta + aSubArbolIzq.padres(); }
+            if(aSubArbolDer != null) { rta = rta + aSubArbolDer.padres(); }
+        }return rta;
+    }
+    public int hojas() {
+        int rta = 0;
+        if(!estaVacio()) {
+            if(aSubArbolIzq == null && aSubArbolDer == null) { rta = 1; }
+            if(aSubArbolIzq != null ) { rta = rta + aSubArbolIzq.hojas(); }
+            if(aSubArbolDer != null) { rta = rta + aSubArbolDer.hojas(); }
+        }return rta;
+    } 
 }
