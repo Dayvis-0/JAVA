@@ -116,7 +116,7 @@
     <Component class="javax.swing.JComboBox" name="cb_opciones">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="17">
+          <StringArray count="19">
             <StringItem index="0" value="Vacio?"/>
             <StringItem index="1" value="Maximo"/>
             <StringItem index="2" value="Minimo"/>
@@ -133,7 +133,9 @@
             <StringItem index="13" value="RecorrerHoja"/>
             <StringItem index="14" value="Padres"/>
             <StringItem index="15" value="Hojas"/>
-            <StringItem index="16" value="Elementos"/>
+            <StringItem index="16" value="Su padre String?"/>
+            <StringItem index="17" value="Su padre Object?"/>
+            <StringItem index="18" value="Elementos"/>
           </StringArray>
         </Property>
       </Properties>
