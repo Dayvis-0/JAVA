@@ -45,7 +45,7 @@ public class appArbolB extends javax.swing.JFrame {
             }
         });
 
-        cb_opciones.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Vacio?", "Maximo", "Minimo", "Arbol", "Pre-Orden", "In-Orden", "Pos-Orden", "Existe arbol?", "Es hoja?", "Es padre?", "Altura", "Nivel", "RecorrerPadre", "RecorrerHoja", "Padres", "Hojas", "Su padre String?", "Su padre Object?", "Elementos" }));
+        cb_opciones.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Vacio?", "Maximo", "Minimo", "Arbol", "Pre-Orden", "In-Orden", "Pos-Orden", "Existe arbol?", "Es hoja?", "Es padre?", "Altura", "Nivel", "RecorrerPadre", "RecorrerHoja", "Padres", "Hojas", "Su padre String?", "Su padre Object?", "Maximo String", "Elementos" }));
 
         bu_ejecutar.setText("Ejecutar");
         bu_ejecutar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -144,7 +144,8 @@ public class appArbolB extends javax.swing.JFrame {
             case 15: ta_rta.setText("Hojas: " + arbb1.hojas()); break;
             case 16: ta_rta.setText("Su padre es String: " + arbb1.suPadre(tf_nodo.getText())); break;
             case 17: ta_rta.setText("Su padre es Object: " + arbb1.padre(tf_nodo.getText())); break;
-            case 18: ta_rta.setText("Elementos: " + arbb1.elementos()); break;
+            case 18: ta_rta.setText("Mayor: " + arbb1.maximoString()); break;
+            case 19: ta_rta.setText("Elementos: " + arbb1.elementos()); break;
         }
     }//GEN-LAST:event_bu_ejecutarMouseClicked
 
