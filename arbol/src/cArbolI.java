@@ -103,7 +103,7 @@ public class cArbolI {
             }
         }return rta;
     }
-    public String preOrden(){
+        public String preOrden(){
         String rta= "";
         if(!estaVacio()){
             Stack<cNodoA> pila= new Stack<>();
