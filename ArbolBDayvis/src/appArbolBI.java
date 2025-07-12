@@ -30,11 +30,16 @@ public class appArbolBI extends javax.swing.JFrame {
         ta_rta.setRows(5);
         jScrollPane1.setViewportView(ta_rta);
 
-        cb_operaciones.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Agregar" }));
+        cb_operaciones.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Existe?", "Pre orden" }));
 
         bu_eliminar.setText("Eliminar");
 
         bu_ejecutor.setText("Ejecutar");
+        bu_ejecutor.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bu_ejecutorMouseClicked(evt);
+            }
+        });
 
         bu_agregar.setText("Agregar");
         bu_agregar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -105,6 +110,16 @@ public class appArbolBI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_bu_agregarMouseClicked
 
+    private void bu_ejecutorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bu_ejecutorMouseClicked
+        // TODO add your handling code here:
+        int opc = cb_operaciones.getSelectedIndex();
+        
+        switch(opc) {
+            case 0: ta_rta.setText("Existe: " + arbbi.existe(tf_nodo.getText())); break;
+            case 1: ta_rta.setText("Preorden: " + arbbi.preOrden()); break;
+        }
+    }//GEN-LAST:event_bu_ejecutorMouseClicked
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -124,7 +139,14 @@ public class appArbolBI extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new appArbolBI().setVisible(true));
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                appArbolBI arbi1 = new appArbolBI();
+                
+                arbi1.setVisible(true);
+                arbi1.setLocationRelativeTo(null);
+            }
+        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

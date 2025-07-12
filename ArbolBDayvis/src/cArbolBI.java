@@ -11,6 +11,23 @@ public class cArbolBI {
     public cNodoAB sRaiz() { return aRaiz; }
     // otros metodos
     public boolean estaVacio() { return (aRaiz == null); }
+    public cNodoAB posicionar(Object pElemento) {
+        cNodoAB rta = aRaiz;
+        if(!estaVacio()) {
+            boolean hayNodo = true;
+            while(hayNodo) {
+                if(pElemento.toString().compareTo(rta.sElemento().toString()) <= 0) {
+                    if(rta.sSubArbolIzq() != null) {
+                        rta = rta.sSubArbolIzq();
+                    } else { hayNodo = false; }
+                } else {
+                    if(rta.sSubArbolDer() != null) {
+                        rta = rta.sSubArbolDer();
+                    } else { hayNodo = false; }
+                }
+            }
+        } return rta;
+    }
     public cNodoAB arbol(Object pElemento) {
         cNodoAB rta = null;
         if(!estaVacio()) {
@@ -29,26 +46,11 @@ public class cArbolBI {
         }
         return rta;
     }
-    public cNodoAB buscar(Object pElemento) {
-        cNodoAB rta = null;
-        if(!estaVacio()) {
-            boolean hayNodo = true;
-            while(hayNodo) {
-                if(pElemento.toString().compareTo(rta.sElemento().toString()) <= 0) {
-                    if(rta.sSubArbolIzq() != null) { rta = rta.sSubArbolIzq(); }
-                    else { hayNodo = false; }
-                } else {
-                    if(rta.sSubArbolDer() != null) { rta = rta.sSubArbolDer(); }
-                    else { hayNodo = false; }
-                }
-            }
-        } return rta;
-    }
     public boolean agregar(Object pElemento) { 
         boolean rta = false;
         if(estaVacio()) { aRaiz = new cNodoAB(pElemento); rta = true; }
         else {
-            cNodoAB dir = buscar(pElemento);
+            cNodoAB dir = posicionar(pElemento);
             if(pElemento.toString().compareTo(dir.sElemento().toString()) <= 0) {
                 dir.mSubArbolIzq(new cNodoAB(pElemento));
                 rta = true;
@@ -62,13 +64,13 @@ public class cArbolBI {
         String rta = "";
         if(!estaVacio()) {
             Stack<cNodoAB> pila = new Stack<>();
-            pila.push(aRaiz);
             cNodoAB dir = null;
+            pila.push(aRaiz);
             while(!pila.isEmpty()) {
                 dir = pila.pop();
                 rta = rta + dir.sElemento() + " ";
-                if(dir.sSubArbolIzq()!= null) { pila.push(dir.sSubArbolIzq()); }
                 if(dir.sSubArbolDer()!= null) { pila.push(dir.sSubArbolDer()); }
+                if(dir.sSubArbolIzq()!= null) { pila.push(dir.sSubArbolIzq()); }
             }
         }return rta;
     }
@@ -113,6 +115,21 @@ public class cArbolBI {
                         }
                     }
                 }
+                if(dir.sSubArbolDer() != null){
+                    if(dir.sSubArbolDer().sElemento() == null) {
+                        if(dir.sSubArbolDer().sSubArbolIzq() == null && dir.sSubArbolDer().sSubArbolDer() == null) {
+                            dir.mSubArbolDer(null);
+                        } else if(dir.sSubArbolDer().sSubArbolDer() != null) {
+                            dir.sSubArbolDer().mElemento(dir.sSubArbolDer().sSubArbolDer().sElemento());
+                            dir.sSubArbolDer().mSubArbolIzq(dir.sSubArbolDer().sSubArbolDer().sSubArbolIzq());
+                            dir.sSubArbolDer().mSubArbolDer(dir.sSubArbolDer().sSubArbolDer().sSubArbolDer());
+                        } else if(dir.sSubArbolDer().sSubArbolIzq() != null) {
+                            dir.sSubArbolDer().mElemento(dir.sSubArbolDer().sSubArbolIzq().sElemento());
+                            dir.sSubArbolDer().mSubArbolDer(dir.sSubArbolDer().sSubArbolIzq().sSubArbolDer());
+                            dir.sSubArbolDer().mSubArbolIzq(dir.sSubArbolDer().sSubArbolIzq().sSubArbolIzq());
+                        }
+                    }
+                }
                 if(dir.sSubArbolIzq() != null) { pila.push(dir.sSubArbolIzq()); }
                 if(dir.sSubArbolDer()!= null) { pila.push(dir.sSubArbolDer()); }
             }
@@ -140,8 +157,8 @@ public class cArbolBI {
                         dir.mSubArbolIzq(dir.sSubArbolIzq().sSubArbolIzq());
                     } else {
                         dir.mElemento(dir.sSubArbolDer().sElemento());
-                        dir.mSubArbolDer(dir.sSubArbolDer().sSubArbolIzq());
-                        dir.mSubArbolIzq(dir.sSubArbolDer().sSubArbolDer());
+                        dir.mSubArbolIzq(dir.sSubArbolDer().sSubArbolIzq());
+                        dir.mSubArbolDer(dir.sSubArbolDer().sSubArbolDer());
                     }
                 }
             }
@@ -149,4 +166,87 @@ public class cArbolBI {
         if(rta) { limpiar(); }
         return rta;
      }
+    public boolean existe(Object pElemento) {
+        boolean rta = false;
+        if(!estaVacio()) {
+            cNodoAB dir = null;
+            while(dir != null && !rta){
+                if(pElemento.equals(dir.sElemento())) { rta = true;}
+                else {
+                    if(pElemento.toString().compareTo(dir.sElemento().toString()) < 0) {
+                        dir = dir.sSubArbolIzq();
+                    } else { dir = dir.sSubArbolDer(); }
+                }
+            }
+        } return rta;
+    }
+    public boolean esPadre(Object pElemento) {
+        boolean rta = false;
+        if(!estaVacio()) {
+            cNodoAB dir = aRaiz;
+            while(dir != null && !rta) {
+                if(pElemento.equals(dir.sElemento())) {
+                    if(dir.sSubArbolIzq() != null || dir.sSubArbolDer() != null) { rta = true; }
+                    else { dir = null; }
+                } else {
+                    if(pElemento.toString().compareTo(dir.sElemento().toString()) < 0) {
+                        dir = dir.sSubArbolIzq();
+                    } else { dir = dir.sSubArbolDer(); }
+                }
+            }
+        } return rta;
+    }
+    public boolean esHoja(Object pElemento) {
+        boolean rta = false;
+        if(!estaVacio()) {
+            cNodoAB dir = aRaiz;
+            while(dir != null && !rta) {
+                if(pElemento.equals(dir.sElemento())) {
+                    if(dir.sSubArbolIzq() ==  null && dir.sSubArbolDer() == null) { rta = true; }
+                    else { dir = null; }
+                } else {
+                    if(pElemento.toString().compareTo(dir.sElemento().toString()) < 0) {
+                        dir = dir.sSubArbolIzq();
+                    } else { dir = dir.sSubArbolDer(); } 
+                }
+            }
+        } return rta;
+    }
+    public cNodoAB padre(Object pELemento) {
+        cNodoAB rta = null;
+        if(!estaVacio()) {
+            rta = aRaiz;
+            boolean encontrado = false;
+            while(rta != null && !encontrado) {
+                if(pELemento.equals(rta.sElemento())) { rta = null; }
+                else {
+                    if(pELemento.toString().compareTo(rta.sElemento().toString()) < 0) {
+                        if(rta.sSubArbolIzq() != null) {
+                            if(pELemento.equals(rta.sSubArbolIzq().sElemento())) { encontrado = true; }
+                            else { rta = rta.sSubArbolIzq(); }
+                        } else{ rta = rta.sSubArbolIzq(); }
+                    } else {
+                        if(rta.sSubArbolDer() != null) {
+                            if(pELemento.equals(rta.sSubArbolDer().sElemento())) { encontrado = true; }
+                            else { rta = rta.sSubArbolDer(); }
+                        }
+                    }
+                }
+            }
+        } return rta; 
+    }
+    public int nodos() {
+        int rta = 0;
+        if(!estaVacio()) {
+            Stack<cNodoAB> pila = new Stack<>();
+            cNodoAB dir = null;
+            pila.push(aRaiz);
+            while(!pila.isEmpty()) {
+                dir = pila.pop();
+                rta = rta + 1;
+                if(dir.sSubArbolDer() != null) { pila.push(dir.sSubArbolDer()); }
+                if(dir.sSubArbolIzq()!= null) { pila.push(dir.sSubArbolIzq()); }
+            }
+        } return rta;
+    }
 }

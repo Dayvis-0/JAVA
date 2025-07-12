@@ -108,8 +108,9 @@
     <Component class="javax.swing.JComboBox" name="cb_operaciones">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="1">
-            <StringItem index="0" value="Agregar"/>
+          <StringArray count="2">
+            <StringItem index="0" value="Existe?"/>
+            <StringItem index="1" value="Pre orden"/>
           </StringArray>
         </Property>
       </Properties>
@@ -126,6 +127,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Ejecutar"/>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="bu_ejecutorMouseClicked"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="bu_agregar">
       <Properties>
