@@ -30,9 +30,14 @@ public class appArbolBI extends javax.swing.JFrame {
         ta_rta.setRows(5);
         jScrollPane1.setViewportView(ta_rta);
 
-        cb_operaciones.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Existe?", "Pre orden" }));
+        cb_operaciones.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Esta vacio?", "Maximo ", "Minimo", "Arbol", "Pre-orden", "In-orden", "Pos-orden", "Existe arbol?", "Es hoja?", "Es padre?", "Nodos", "Padres", "Hojas", "Altura", "Nivel" }));
 
         bu_eliminar.setText("Eliminar");
+        bu_eliminar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bu_eliminarMouseClicked(evt);
+            }
+        });
 
         bu_ejecutor.setText("Ejecutar");
         bu_ejecutor.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -115,10 +120,28 @@ public class appArbolBI extends javax.swing.JFrame {
         int opc = cb_operaciones.getSelectedIndex();
         
         switch(opc) {
-            case 0: ta_rta.setText("Existe: " + arbbi.existe(tf_nodo.getText())); break;
-            case 1: ta_rta.setText("Preorden: " + arbbi.preOrden()); break;
+            case 0: ta_rta.setText("Esta vacio: " + arbbi.estaVacio()); break;
+            case 1: cNodoAB dir = arbbi.maximo(); ta_rta.setText("Maximo: " + (dir != null ? dir.sElemento(): "----")); break;
+            case 2: dir = arbbi.minimo(); ta_rta.setText("Minimo: " + (dir != null ? dir.sElemento(): "----")); break;
+            case 3: ta_rta.setText("Arbol: " + arbbi.arbol(tf_nodo.getText())); break;
+            case 4: ta_rta.setText("Pre-orden: " + arbbi.preOrden()); break;
+            case 5: ta_rta.setText("In-orden: " + arbbi.inOrden()); break;
+            case 6: ta_rta.setText("Pos-Orden: " + arbbi.posOrden()); break;
+            case 7: ta_rta.setText("Existe arbol: " + arbbi.existe(tf_nodo.getText())); break;
+            case 8: ta_rta.setText("Es hoja: " + arbbi.esHoja(tf_nodo.getText())); break;
+            case 9: ta_rta.setText("Es padre: " + arbbi.esPadre(tf_nodo.getText())); break;
+            case 10: ta_rta.setText("Nodos: " + arbbi.nodos()); break;
+            case 11: ta_rta.setText("Padres: " + arbbi.padres()); break;
+            case 12: ta_rta.setText("Hojas: " + arbbi.hojas()); break;
+            case 13: ta_rta.setText("Altura: " + arbbi.altura()); break;
+            case 14: ta_rta.setText("Nivel: " + arbbi.nivel(tf_nodo)); break;
         }
     }//GEN-LAST:event_bu_ejecutorMouseClicked
+
+    private void bu_eliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bu_eliminarMouseClicked
+        // TODO add your handling code here:
+        arbbi.eliminar(tf_nodo);
+    }//GEN-LAST:event_bu_eliminarMouseClicked
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

@@ -1,4 +1,7 @@
+import java.util.ArrayDeque;
+import java.util.Queue;
 import java.util.Stack;
+import java.util.concurrent.ArrayBlockingQueue;
 
 public class cArbolBI {
     // atributo
@@ -61,6 +64,34 @@ public class cArbolBI {
         } return rta;
     }
     public String preOrden() {
+        String rta = "";
+        if(!estaVacio()) {
+            Stack<cNodoAB> pila = new Stack<>();
+            cNodoAB dir = null;
+            pila.push(aRaiz);
+            while(!pila.isEmpty()) {
+                dir = pila.pop();
+                rta = rta + dir.sElemento() + " ";
+                if(dir.sSubArbolDer()!= null) { pila.push(dir.sSubArbolDer()); }
+                if(dir.sSubArbolIzq()!= null) { pila.push(dir.sSubArbolIzq()); }
+            }
+        }return rta;
+    }
+    public String inOrden() {
+        String rta = "";
+        if(!estaVacio()) {
+            Stack<cNodoAB> pila = new Stack<>();
+            cNodoAB dir = null;
+            pila.push(aRaiz);
+            while(!pila.isEmpty()) {
+                dir = pila.pop();
+                rta = rta + dir.sElemento() + " ";
+                if(dir.sSubArbolDer()!= null) { pila.push(dir.sSubArbolDer()); }
+                if(dir.sSubArbolIzq()!= null) { pila.push(dir.sSubArbolIzq()); }
+            }
+        }return rta;
+    }
+    public String posOrden() {
         String rta = "";
         if(!estaVacio()) {
             Stack<cNodoAB> pila = new Stack<>();
@@ -169,7 +200,7 @@ public class cArbolBI {
     public boolean existe(Object pElemento) {
         boolean rta = false;
         if(!estaVacio()) {
-            cNodoAB dir = null;
+            cNodoAB dir = aRaiz;
             while(dir != null && !rta){
                 if(pElemento.equals(dir.sElemento())) { rta = true;}
                 else {
@@ -248,5 +279,72 @@ public class cArbolBI {
                 if(dir.sSubArbolIzq()!= null) { pila.push(dir.sSubArbolIzq()); }
             }
         } return rta;
+    }
+    public int padres(){
+        int rta = 0;
+        if(!estaVacio()){
+            Stack<cNodoAB> pila = new Stack<>();
+            cNodoAB dir = null;
+            pila.push(aRaiz);
+            while(!pila.isEmpty()){
+                dir = pila.pop();
+                if(dir.sSubArbolIzq() != null || dir.sSubArbolDer() != null) { rta = rta + 1; }
+                if(dir.sSubArbolDer()!= null) { pila.push(dir.sSubArbolDer()); }
+                if(dir.sSubArbolIzq() != null) { pila.push(dir.sSubArbolIzq()); }
+            }
+        }return rta;
+    }
+    public int hojas(){
+        int rta = 0;
+        if(!estaVacio()){
+            Stack<cNodoAB> pila = new Stack<>();
+            cNodoAB dir = null;
+            pila.push(aRaiz);
+            while(!pila.isEmpty()){
+                dir = pila.pop();
+                if(dir.sSubArbolIzq() != null && dir.sSubArbolDer() != null) { rta = rta + 1; }
+                if(dir.sSubArbolDer()!= null) { pila.push(dir.sSubArbolDer()); }
+                if(dir.sSubArbolIzq() != null) { pila.push(dir.sSubArbolIzq()); }
+            }
+        }return rta;
+    }
+    public int altura() {
+        int rta = 0;
+        if(!estaVacio()){
+            Queue<cNodoAB> cola = new ArrayDeque<>();
+            cola.add(aRaiz);
+            cNodoAB dir = null;
+            while(!cola.isEmpty()){
+                int tamanio = cola.size();
+                while(tamanio-- > 0) {
+                    dir = cola.poll();
+                    if(dir.sSubArbolIzq() != null) { cola.add(dir.sSubArbolIzq()); }
+                    if(dir.sSubArbolDer()!= null) { cola.add(dir.sSubArbolDer()); }
+                }
+                rta = rta + 1;
+            }
+        }return rta;
+    }
+    public int nivel(Object pElemento) {
+        int rta = 0;
+        cNodoAB dir = aRaiz;
+        boolean encontrado = false;
+        if(!estaVacio()) {
+            while(dir != null && !encontrado) {
+                if(pElemento.equals(dir.sElemento())) { encontrado = false; }
+                else {
+                    if(dir.sSubArbolIzq() != null && pElemento.toString().compareTo(dir.sElemento().toString()) < 0){ 
+                        dir = dir.sSubArbolIzq();
+                        rta  = rta + 1;
+                    }
+                    else if(dir.sSubArbolDer() != null && pElemento.toString().compareTo(dir.sElemento().toString()) > 0){ 
+                        dir = dir.sSubArbolDer();
+                        rta  = rta + 1;
+                    } else {
+                        dir = null;
+                    }
+                }
+            }
+        } return (encontrado ? rta : -1);
     }
 }
