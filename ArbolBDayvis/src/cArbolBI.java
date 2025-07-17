@@ -302,7 +302,7 @@ public class cArbolBI {
             pila.push(aRaiz);
             while(!pila.isEmpty()){
                 dir = pila.pop();
-                if(dir.sSubArbolIzq() != null && dir.sSubArbolDer() != null) { rta = rta + 1; }
+                if(dir.sSubArbolIzq() == null && dir.sSubArbolDer() == null) { rta = rta + 1; }
                 if(dir.sSubArbolDer()!= null) { pila.push(dir.sSubArbolDer()); }
                 if(dir.sSubArbolIzq() != null) { pila.push(dir.sSubArbolIzq()); }
             }
@@ -346,5 +346,60 @@ public class cArbolBI {
                 }
             }
         } return (encontrado ? rta : -1);
+    }
+    public String recorrerHojas(){
+        String rta = "";
+        if(!estaVacio()){
+            Stack<cNodoAB> pila = new Stack<>();
+            cNodoAB dir = null;
+            pila.push(aRaiz);
+            while(!pila.isEmpty()){
+                dir = pila.pop();
+                if(dir.sSubArbolIzq() == null && dir.sSubArbolDer() == null) { rta = rta + dir.sElemento() + ""; }
+                if(dir.sSubArbolDer()!= null) { pila.push(dir.sSubArbolDer()); }
+                if(dir.sSubArbolIzq() != null) { pila.push(dir.sSubArbolIzq()); }
+            }
+        }return rta;
+    }
+    public String recorrerPadres(){
+        String rta = " ";
+        if(!estaVacio()){
+            Stack<cNodoAB> pila = new Stack<>();
+            cNodoAB dir = null;
+            pila.push(aRaiz);
+            while(!pila.isEmpty()){
+                dir = pila.pop();
+                if(dir.sSubArbolIzq() != null || dir.sSubArbolDer() != null) { rta = rta + dir.sElemento() + " "; }
+                if(dir.sSubArbolDer() != null) { pila.push(dir.sSubArbolDer()); }
+                if(dir.sSubArbolIzq() != null) { pila.push(dir.sSubArbolIzq()); }
+            }
+        }return rta;
+    }
+    public String recorrerNodos() {
+        String rta = "";
+        if(!estaVacio()) {
+            Stack<cNodoAB> pila = new Stack<>();
+            cNodoAB dir = null;
+            pila.push(aRaiz);
+            while(!pila.isEmpty()){
+                dir = pila.pop();
+                rta = rta + dir.sElemento() + " ";
+                if(dir.sSubArbolDer() != null) { pila.push(dir.sSubArbolDer()); }
+                if(dir.sSubArbolIzq()!= null) { pila.push(dir.sSubArbolIzq()); }
+            }
+        } return rta;
+    }
+    public String recorrerHijos(){
+        String rta = "";
+        if(!estaVacio()){
+            Stack<cNodoAB> pila = new Stack<>();
+            cNodoAB dir = null;
+            pila.push(aRaiz);
+            while(!pila.isEmpty()){
+                dir = pila.pop();
+                rta = rta + dir.sElemento() + " ";
+                if(dir.sSubArbolDer() != null || dir.sSubArbolIzq())
+            }
+        } return rta;
     }
 }

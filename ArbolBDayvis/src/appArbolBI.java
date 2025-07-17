@@ -30,7 +30,7 @@ public class appArbolBI extends javax.swing.JFrame {
         ta_rta.setRows(5);
         jScrollPane1.setViewportView(ta_rta);
 
-        cb_operaciones.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Esta vacio?", "Maximo ", "Minimo", "Arbol", "Pre-orden", "In-orden", "Pos-orden", "Existe arbol?", "Es hoja?", "Es padre?", "Nodos", "Padres", "Hojas", "Altura", "Nivel" }));
+        cb_operaciones.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Esta vacio?", "Maximo ", "Minimo", "Arbol", "Pre-orden", "In-orden", "Pos-orden", "Existe arbol?", "Es hoja?", "Es padre?", "Nodos", "Padres", "Hojas", "Altura", "Nivel", "Reccorer hojas", "Reccorer padres", "Reccorer nodos" }));
 
         bu_eliminar.setText("Eliminar");
         bu_eliminar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -135,6 +135,9 @@ public class appArbolBI extends javax.swing.JFrame {
             case 12: ta_rta.setText("Hojas: " + arbbi.hojas()); break;
             case 13: ta_rta.setText("Altura: " + arbbi.altura()); break;
             case 14: ta_rta.setText("Nivel: " + arbbi.nivel(tf_nodo)); break;
+            case 15: ta_rta.setText("Recorrer hojas: " + arbbi.recorrerHojas()); break;
+            case 16: ta_rta.setText("Recorrer padres: " + arbbi.recorrerPadres()); break;
+            case 17: ta_rta.setText("Recorrer nodos: " + arbbi.recorrerNodos()); break;
         }
     }//GEN-LAST:event_bu_ejecutorMouseClicked
 
