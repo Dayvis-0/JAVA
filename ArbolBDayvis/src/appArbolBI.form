@@ -108,7 +108,7 @@
     <Component class="javax.swing.JComboBox" name="cb_operaciones">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="18">
+          <StringArray count="26">
             <StringItem index="0" value="Esta vacio?"/>
             <StringItem index="1" value="Maximo "/>
             <StringItem index="2" value="Minimo"/>
@@ -119,14 +119,22 @@
             <StringItem index="7" value="Existe arbol?"/>
             <StringItem index="8" value="Es hoja?"/>
             <StringItem index="9" value="Es padre?"/>
-            <StringItem index="10" value="Nodos"/>
-            <StringItem index="11" value="Padres"/>
-            <StringItem index="12" value="Hojas"/>
-            <StringItem index="13" value="Altura"/>
-            <StringItem index="14" value="Nivel"/>
-            <StringItem index="15" value="Reccorer hojas"/>
-            <StringItem index="16" value="Reccorer padres"/>
-            <StringItem index="17" value="Reccorer nodos"/>
+            <StringItem index="10" value="Su padre?"/>
+            <StringItem index="11" value="Nodos"/>
+            <StringItem index="12" value="Padres"/>
+            <StringItem index="13" value="Hojas"/>
+            <StringItem index="14" value="Altura"/>
+            <StringItem index="15" value="Nivel"/>
+            <StringItem index="16" value="Reccorer hojas"/>
+            <StringItem index="17" value="Reccorer padres"/>
+            <StringItem index="18" value="Reccorer hermano"/>
+            <StringItem index="19" value="Reccorer nivel"/>
+            <StringItem index="20" value="Reccorer primer hijo"/>
+            <StringItem index="21" value="Reccorer hijo unico"/>
+            <StringItem index="22" value="Reccorer ultimo hijo"/>
+            <StringItem index="23" value="Reccorer segundo hijo"/>
+            <StringItem index="24" value="Son hermanos?"/>
+            <StringItem index="25" value="Primeros-ultimos"/>
           </StringArray>
         </Property>
       </Properties>

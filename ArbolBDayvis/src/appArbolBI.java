@@ -30,7 +30,7 @@ public class appArbolBI extends javax.swing.JFrame {
         ta_rta.setRows(5);
         jScrollPane1.setViewportView(ta_rta);
 
-        cb_operaciones.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Esta vacio?", "Maximo ", "Minimo", "Arbol", "Pre-orden", "In-orden", "Pos-orden", "Existe arbol?", "Es hoja?", "Es padre?", "Nodos", "Padres", "Hojas", "Altura", "Nivel", "Reccorer hojas", "Reccorer padres", "Reccorer nodos" }));
+        cb_operaciones.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Esta vacio?", "Maximo ", "Minimo", "Arbol", "Pre-orden", "In-orden", "Pos-orden", "Existe arbol?", "Es hoja?", "Es padre?", "Su padre?", "Nodos", "Padres", "Hojas", "Altura", "Nivel", "Reccorer hojas", "Reccorer padres", "Reccorer hermano", "Reccorer nivel", "Reccorer primer hijo", "Reccorer hijo unico", "Reccorer ultimo hijo", "Reccorer segundo hijo", "Son hermanos?", "Primeros-ultimos" }));
 
         bu_eliminar.setText("Eliminar");
         bu_eliminar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -130,14 +130,23 @@ public class appArbolBI extends javax.swing.JFrame {
             case 7: ta_rta.setText("Existe arbol: " + arbbi.existe(tf_nodo.getText())); break;
             case 8: ta_rta.setText("Es hoja: " + arbbi.esHoja(tf_nodo.getText())); break;
             case 9: ta_rta.setText("Es padre: " + arbbi.esPadre(tf_nodo.getText())); break;
-            case 10: ta_rta.setText("Nodos: " + arbbi.nodos()); break;
-            case 11: ta_rta.setText("Padres: " + arbbi.padres()); break;
-            case 12: ta_rta.setText("Hojas: " + arbbi.hojas()); break;
-            case 13: ta_rta.setText("Altura: " + arbbi.altura()); break;
-            case 14: ta_rta.setText("Nivel: " + arbbi.nivel(tf_nodo)); break;
-            case 15: ta_rta.setText("Recorrer hojas: " + arbbi.recorrerHojas()); break;
-            case 16: ta_rta.setText("Recorrer padres: " + arbbi.recorrerPadres()); break;
-            case 17: ta_rta.setText("Recorrer nodos: " + arbbi.recorrerNodos()); break;
+            case 10: ta_rta.setText("Su padre: " + arbbi.suPadre(tf_nodo.getText())); break;
+            case 11: ta_rta.setText("Nodos: " + arbbi.nodos()); break;
+            case 12: ta_rta.setText("Padres: " + arbbi.padres()); break;
+            case 13: ta_rta.setText("Hojas: " + arbbi.hojas()); break;
+            case 14: ta_rta.setText("Altura: " + arbbi.altura()); break;
+            case 15: ta_rta.setText("Nivel: " + arbbi.nivel(-1)); break;
+            case 16: ta_rta.setText("Recorrer hojas: " + arbbi.recorrerHojas()); break;
+            case 17: ta_rta.setText("Recorrer padres: " + arbbi.recorrerPadres()); break;
+            case 18: ta_rta.setText("Recorrer hermano: " + arbbi.recorreHermano(tf_nodo.getText())); break;
+            case 19: ta_rta.setText("Recorrer nivel: " + arbbi.recorreNivel(-1)); break;
+            case 20: ta_rta.setText("Recorrer primer hijo: " + arbbi.recorrePrimerHijo()); break;
+            case 21: ta_rta.setText("Recorrer hijo unico: " + arbbi.recorreHijoUnico()); break;
+            case 22: ta_rta.setText("Recorrer utlimo hijo: " + arbbi.recorreUltimoHijo()); break;
+            case 23: ta_rta.setText("Recorrer segundo hijo: " + arbbi.recorreSegundoHijo()); break;
+            case 24: ta_rta.setText("Son hermanos: " + arbbi.sonHermano(tf_nodo.getText())); break;
+            case 25: ta_rta.setText("Primeros - ultimos: " + arbbi.primeroUltimo()); break;
+            
         }
     }//GEN-LAST:event_bu_ejecutorMouseClicked
 

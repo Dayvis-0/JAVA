@@ -81,29 +81,41 @@ public class cArbolBI {
         String rta = "";
         if(!estaVacio()) {
             Stack<cNodoAB> pila = new Stack<>();
-            cNodoAB dir = null;
-            pila.push(aRaiz);
+            cNodoAB dir = aRaiz;
             while(!pila.isEmpty()) {
+                while(dir != null) {
+                    pila.push(dir);
+                    dir = dir.sSubArbolIzq();
+                }
                 dir = pila.pop();
                 rta = rta + dir.sElemento() + " ";
-                if(dir.sSubArbolDer()!= null) { pila.push(dir.sSubArbolDer()); }
-                if(dir.sSubArbolIzq()!= null) { pila.push(dir.sSubArbolIzq()); }
+                dir = dir.sSubArbolDer();
             }
         }return rta;
     }
     public String posOrden() {
         String rta = "";
-        if(!estaVacio()) {
+        if (!estaVacio()) {
             Stack<cNodoAB> pila = new Stack<>();
-            cNodoAB dir = null;
-            pila.push(aRaiz);
-            while(!pila.isEmpty()) {
-                dir = pila.pop();
-                rta = rta + dir.sElemento() + " ";
-                if(dir.sSubArbolDer()!= null) { pila.push(dir.sSubArbolDer()); }
-                if(dir.sSubArbolIzq()!= null) { pila.push(dir.sSubArbolIzq()); }
+            cNodoAB dir = aRaiz;
+            cNodoAB dirultimo = null;
+
+            while (!pila.isEmpty() || dir != null) {
+                if (dir != null) {
+                    pila.push(dir);
+                    dir = dir.sSubArbolIzq();
+                } else {
+                    cNodoAB nodo = pila.peek();
+                    if (nodo.sSubArbolDer() != null && nodo.sSubArbolDer() != dirultimo) {
+                        dir = nodo.sSubArbolDer();
+                    } else {
+                        rta = rta + nodo.sElemento() + " ";
+                        dirultimo = pila.pop();
+                    }
+                }
             }
-        }return rta;
+        }
+        return rta;
     }
     public cNodoAB maximo() {
         cNodoAB rta = null;
@@ -398,8 +410,200 @@ public class cArbolBI {
             while(!pila.isEmpty()){
                 dir = pila.pop();
                 rta = rta + dir.sElemento() + " ";
-                if(dir.sSubArbolDer() != null || dir.sSubArbolIzq())
             }
         } return rta;
+    }
+    public String suPadre(Object pElemento) {
+        String rta = "";
+        if (!estaVacio()) {
+            cNodoAB actual = aRaiz;
+            while (actual != null) {
+                if (actual.sSubArbolIzq() != null && pElemento.equals(actual.sSubArbolIzq().sElemento())) {
+                    rta = actual.sElemento().toString();
+                    break;
+                } else if (actual.sSubArbolDer() != null && pElemento.equals(actual.sSubArbolDer().sElemento())) {
+                    rta = actual.sElemento().toString();
+                    break;
+                } else {
+                    if (pElemento.toString().compareTo(actual.sElemento().toString()) < 0) {
+                        actual = actual.sSubArbolIzq();
+                    } else {
+                        actual = actual.sSubArbolDer();
+                    }
+                }
+            }
+        }
+        return rta.isEmpty() ? "No tiene padre o no existe" : rta;
+    }
+    public String recorreHermano(Object pElemento) {
+        String rta = "";
+        if (!estaVacio()) {
+            Stack<cNodoAB> pila = new Stack<>();
+            cNodoAB dir = null;
+            pila.push(aRaiz);
+
+            while (!pila.isEmpty()) {
+                dir = pila.pop();
+
+                if (dir.sSubArbolIzq() != null && pElemento.equals(dir.sSubArbolIzq().sElemento())) {
+                    if (dir.sSubArbolDer() != null) {
+                        rta = dir.sSubArbolDer().sElemento().toString();
+                    }
+                    break;
+                }
+                if (dir.sSubArbolDer() != null && pElemento.equals(dir.sSubArbolDer().sElemento())) {
+                    if (dir.sSubArbolIzq() != null) {
+                        rta = dir.sSubArbolIzq().sElemento().toString();
+                    }
+                    break;
+                }
+
+                if (dir.sSubArbolDer() != null) pila.push(dir.sSubArbolDer());
+                if (dir.sSubArbolIzq() != null) pila.push(dir.sSubArbolIzq());
+            }
+        }
+        return rta.isEmpty() ? "No tiene hermano" : rta;
+    }
+    public String recorreNivel(Object pElemento) {
+        String rta = "";
+        if (!estaVacio()) {
+            int objetivo = nivel(pElemento); // usa tu método ya hecho
+            if (objetivo != -1) {
+                Stack<cNodoAB> actual = new Stack<>();
+                Stack<cNodoAB> siguiente = new Stack<>();
+                actual.push(aRaiz);
+                int nivel = 0;
+
+                while (!actual.isEmpty()) {
+                    while (!actual.isEmpty()) {
+                        cNodoAB nodo = actual.pop();
+                        if (nivel == objetivo) {
+                            rta += nodo.sElemento() + " ";
+                        }
+                        if (nodo.sSubArbolDer() != null) siguiente.push(nodo.sSubArbolDer());
+                        if (nodo.sSubArbolIzq() != null) siguiente.push(nodo.sSubArbolIzq());
+                    }
+                    if (nivel == objetivo) break;
+                    nivel++;
+                    Stack<cNodoAB> temp = actual;
+                    actual = siguiente;
+                    siguiente = temp;
+                }
+            }
+        }
+        return rta.isEmpty() ? "Elemento no encontrado o sin nodos en ese nivel" : rta;
+    }
+    public String recorrePrimerHijo() {
+        String rta = "";
+        if (!estaVacio()) {
+            Stack<cNodoAB> pila = new Stack<>();
+            pila.push(aRaiz);
+            while (!pila.isEmpty()) {
+                cNodoAB nodo = pila.pop();
+                if (nodo.sSubArbolIzq() != null || nodo.sSubArbolDer() != null) {
+                    if (nodo.sSubArbolIzq() != null) {
+                        rta += nodo.sSubArbolIzq().sElemento() + " ";
+                    } else if (nodo.sSubArbolDer() != null) {
+                        rta += nodo.sSubArbolDer().sElemento() + " ";
+                    }
+                }
+                if (nodo.sSubArbolDer() != null) pila.push(nodo.sSubArbolDer());
+                if (nodo.sSubArbolIzq() != null) pila.push(nodo.sSubArbolIzq());
+            }
+        }
+        return rta.isEmpty() ? "No hay primeros hijos" : rta;
+    }
+    public String recorreHijoUnico() {
+        String rta = "";
+        if (!estaVacio()) {
+            Stack<cNodoAB> pila = new Stack<>();
+            pila.push(aRaiz);
+
+            while (!pila.isEmpty()) {
+                cNodoAB nodo = pila.pop();
+
+                if ((nodo.sSubArbolIzq() != null && nodo.sSubArbolDer() == null)) {
+                    rta += nodo.sSubArbolIzq().sElemento() + " ";
+                } else if (nodo.sSubArbolIzq() == null && nodo.sSubArbolDer() != null) {
+                    rta += nodo.sSubArbolDer().sElemento() + " ";
+                }
+
+                if (nodo.sSubArbolDer() != null) pila.push(nodo.sSubArbolDer());
+                if (nodo.sSubArbolIzq() != null) pila.push(nodo.sSubArbolIzq());
+            }
+        }
+        return rta.isEmpty() ? "No hay hijos únicos" : rta;
+    }
+    public String recorreUltimoHijo() {
+        String rta = "";
+        if (!estaVacio()) {
+            Stack<cNodoAB> pila = new Stack<>();
+            pila.push(aRaiz);
+
+            while (!pila.isEmpty()) {
+                cNodoAB nodo = pila.pop();
+
+                if (nodo.sSubArbolIzq() != null || nodo.sSubArbolDer() != null) {
+                    if (nodo.sSubArbolDer() != null) {
+                        rta += nodo.sSubArbolDer().sElemento() + " ";
+                    } else if (nodo.sSubArbolIzq() != null) {
+                        rta += nodo.sSubArbolIzq().sElemento() + " ";
+                    }
+                }
+
+                if (nodo.sSubArbolDer() != null) pila.push(nodo.sSubArbolDer());
+                if (nodo.sSubArbolIzq() != null) pila.push(nodo.sSubArbolIzq());
+            }
+        }
+        return rta.isEmpty() ? "No hay últimos hijos" : rta;
+    }
+    public String recorreSegundoHijo() {
+        String rta = "";
+        if (!estaVacio()) {
+            Stack<cNodoAB> pila = new Stack<>();
+            pila.push(aRaiz);
+
+            while (!pila.isEmpty()) {
+                cNodoAB nodo = pila.pop();
+
+                if (nodo.sSubArbolDer() != null) {
+                    rta += nodo.sSubArbolDer().sElemento() + " ";
+                }
+
+                if (nodo.sSubArbolDer() != null) pila.push(nodo.sSubArbolDer());
+                if (nodo.sSubArbolIzq() != null) pila.push(nodo.sSubArbolIzq());
+            }
+        }
+        return rta.isEmpty() ? "No hay segundos hijos" : rta;
+    }
+    public boolean sonHermano(Object pElemento) {
+        boolean rta = false;
+        if (!estaVacio()) {
+            Stack<cNodoAB> pila = new Stack<>();
+            pila.push(aRaiz);
+
+            while (!pila.isEmpty() && !rta) {
+                cNodoAB dir = pila.pop();
+
+                if (dir.sSubArbolIzq() != null && dir.sSubArbolDer() != null) {
+                    if (pElemento.equals(dir.sSubArbolIzq().sElemento()) || pElemento.equals(dir.sSubArbolDer().sElemento())) {
+                        rta = true;
+                    }
+                }
+
+                if (dir.sSubArbolDer() != null) pila.push(dir.sSubArbolDer());
+                if (dir.sSubArbolIzq() != null) pila.push(dir.sSubArbolIzq());
+            }
+        }
+        return rta;
+    }
+    public String primeroUltimo() {
+        String rta = "";
+        if (!estaVacio()) {
+            cNodoAB min = minimo();
+            cNodoAB max = maximo();
+            rta = "Primero: " + min.sElemento() + " - Último: " + max.sElemento();
+        }
+        return rta.isEmpty() ? "Árbol vacío" : rta;
     }
 }

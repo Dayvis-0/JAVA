@@ -187,7 +187,6 @@ public class cArbolI {
                     pila.push(dir);
                     dir = dir.sPhijo();                    
                 }
-
                 dir = pila.pop();
                 rta = rta + " "+ dir.sElemento();
                 dir = dir.sShermano();
