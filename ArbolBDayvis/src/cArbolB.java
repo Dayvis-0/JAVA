@@ -1,5 +1,6 @@
 public class cArbolB {
     // atributos 
+    //Prueba
     private Object aRaiz;
     private cArbolB aSubArbolIzq, aSubArbolDer;
     // constructor
